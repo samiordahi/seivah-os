@@ -24,7 +24,7 @@ export function CalendarWidget() {
   };
 
   return (
-    <Card className="p-6 bg-card/90 backdrop-blur-sm border-0 shadow-lg">
+    <div className="p-6">
       <h3 className="text-lg font-semibold text-foreground mb-4">{calendar.month}</h3>
       
       <div className="grid grid-cols-7 gap-1 mb-2">
@@ -56,6 +56,6 @@ export function CalendarWidget() {
           ))
         )}
       </div>
-    </Card>
+    </div>
   );
 }

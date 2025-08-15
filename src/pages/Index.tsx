@@ -61,7 +61,7 @@ const Index = () => {
             <div className="lg:col-span-2 space-y-6">
               <ChatInput />
               <FinancialChart context="professional" />
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-3 gap-6 items-end">
                 <div className="col-span-2">
                   <HabitsChart />
                 </div>
@@ -71,26 +71,13 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Coluna Direita: calendário solto + tarefas como cards leves */}
+            {/* Coluna Direita: calendário solto + tarefas */}
             <div className="space-y-6">
-              {/* Calendário – totalmente “solto” (sem borda/sombra/fundo) */}
-              <div className="bg-transparent shadow-none p-0">
-                <CalendarWidget />
-              </div>
+              {/* Calendário – sem card wrapper */}
+              <CalendarWidget />
 
-              {/* O que está por vir – cada item vira um card leve */}
-              {/* Observação: se <UpcomingTasks> aceitar className, os utilitários abaixo
-                 removem fundos internos e aplicam sombra/padding nos <li>. */}
-              <div className="">
-                <UpcomingTasks
-                  className="
-                    [&_*]:bg-transparent [&_*]:shadow-none
-                    [&>ul>li]:rounded-2xl [&>ul>li]:bg-card/60
-                    [&>ul>li]:shadow-sm [&>ul>li]:p-4 [&>ul>li]:transition
-                    [&>ul>li:hover]:shadow-md
-                    "
-                />
-              </div>
+              {/* O que está por vir – sem card wrapper */}
+              <UpcomingTasks className="bg-transparent border-0 shadow-none" />
             </div>
           </div>
         </div>
