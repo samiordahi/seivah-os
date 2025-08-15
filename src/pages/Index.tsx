@@ -72,14 +72,18 @@ const Index = () => {
             </div>
 
             {/* Coluna Direita: Calendário + O que está por vir (sem bloco, fundo transparente) */}
-<div className="space-y-6">
-  <div>
-    <CalendarWidget />
-  </div>
-  <div>
-    <UpcomingTasks />
-  </div>
-</div>
+            <div className="space-y-6">
+              <div>
+                <CalendarWidget />
+              </div>
+              <div>
+                <UpcomingTasks />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
