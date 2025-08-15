@@ -43,7 +43,7 @@ export function UpcomingTasks({ className }: UpcomingTasksProps) {
       </div>
       
       <div className="space-y-3">
-        {upcomingItems.map((item) => (
+        {upcomingItems.slice(0, 3).map((item) => (
           <div key={item.id} className="flex items-start gap-3 p-3 rounded-xl bg-card/40 backdrop-blur-sm shadow-sm border border-white/10">
             <div className={`w-3 h-3 rounded-full ${item.color} mt-2 flex-shrink-0`}></div>
             <div className="flex-1 min-w-0">

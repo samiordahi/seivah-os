@@ -77,7 +77,7 @@ const Index = () => {
             </div>
 
             {/* Coluna Direita: calendário solto + tarefas */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* Calendário – sem card wrapper */}
               <CalendarWidget />
 
