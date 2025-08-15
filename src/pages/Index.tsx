@@ -56,14 +56,14 @@ const Index = () => {
           </div>
           
           {/* Chat and Right Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-3">
             {/* Chat Input */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 self-start h-auto">
               <ChatInput />
             </div>
             
             {/* Right Column - Calendar */}
-            <div>
+            <div className="self-start">
               <CalendarWidget />
             </div>
           </div>
