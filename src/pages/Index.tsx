@@ -63,12 +63,14 @@ const Index = () => {
             {/* Left Column */}
             <div className="lg:col-span-2 space-y-6">
               <FinancialChart context="professional" />
-              <HabitsChart />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <HabitsChart />
+                <XPIndicator />
+              </div>
             </div>
             
             {/* Right Column */}
             <div className="space-y-6">
-              <XPIndicator />
               <CalendarWidget />
               <UpcomingTasks />
             </div>
