@@ -2,8 +2,7 @@ import { Search } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 export function ChatInput() {
-  return (
-    <div className="p-6 bg-card/90 backdrop-blur-sm border-0 shadow-lg rounded-2xl">
+  return <div className="p-6 px-0">
       <div className="text-center mb-4">
         <h2 className="text-xl font-medium text-foreground mb-2">
           Olá, <span className="text-coral-primary">Usuário</span>
@@ -14,15 +13,10 @@ export function ChatInput() {
       </div>
       
       <div className="relative max-w-2xl mx-auto">
-        <input 
-          type="text" 
-          placeholder="Escreva qualquer coisa..." 
-          className="w-full border-0 rounded-2xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-coral-primary/20 transition-all bg-background/60 backdrop-blur-sm py-[19px] px-[20px]" 
-        />
+        <input type="text" placeholder="Escreva qualquer coisa..." className="w-full border-0 rounded-2xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-coral-primary/20 transition-all bg-slate-50 bg-[fefefd] mx-0 py-[19px] px-[20px]" />
         <Button size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 bg-coral-primary hover:bg-coral-primary/90 text-white rounded-xl">
           <Search className="h-4 w-4" />
         </Button>
       </div>
-    </div>
-  );
+    </div>;
 }
