@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Clock, FileText } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const upcomingItems = [
   {
@@ -31,9 +32,9 @@ const upcomingItems = [
   },
 ];
 
-export function UpcomingTasks() {
+export function UpcomingTasks({ className }: { className?: string }) {
   return (
-    <Card className="p-6 bg-card/90 backdrop-blur-sm border-0 shadow-lg">
+    <Card className={cn("p-6 bg-card/90 backdrop-blur-sm border-0 shadow-lg", className)}>
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-semibold text-foreground">O que está por vir</h3>
       </div>
