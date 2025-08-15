@@ -54,9 +54,6 @@ const Index = () => {
               <h2 className="text-xl font-medium text-foreground">
                 Olá, <span className="text-coral-primary">Usuário</span>
               </h2>
-              <p className="text-muted-foreground">
-                O que deseja <span className="text-coral-primary font-medium">capturar</span> agora?
-              </p>
             </div>
             <Button size="icon" variant="ghost" className="text-coral-primary hover:bg-coral-primary/10">
               <Search className="h-5 w-5" />
