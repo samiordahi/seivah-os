@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function ChatInput() {
   return (
-    <Card className="p-6 bg-card/90 backdrop-blur-sm border-0 shadow-lg mb-8">
+    <Card className="p-6 bg-card/90 backdrop-blur-sm border-0 shadow-lg">
       <div className="text-center mb-4">
         <h2 className="text-xl font-medium text-foreground mb-2">
           Olá, <span className="text-coral-primary">Usuário</span>
