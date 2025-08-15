@@ -55,7 +55,7 @@ const Index = () => {
             </Button>
           </div>
 
-          {/* Layout principal: 2 colunas independentes */}
+          {/* Layout principal: 2 colunas */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Coluna Esquerda: Chat + Gráficos */}
             <div className="lg:col-span-2 space-y-6">
@@ -71,13 +71,25 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Coluna Direita: Calendário + O que está por vir (sem bloco, fundo transparente) */}
+            {/* Coluna Direita: calendário solto + tarefas como cards leves */}
             <div className="space-y-6">
-              <div>
+              {/* Calendário – totalmente “solto” (sem borda/sombra/fundo) */}
+              <div className="bg-transparent shadow-none p-0">
                 <CalendarWidget />
               </div>
-              <div>
-                <UpcomingTasks />
+
+              {/* O que está por vir – cada item vira um card leve */}
+              {/* Observação: se <UpcomingTasks> aceitar className, os utilitários abaixo
+                 removem fundos internos e aplicam sombra/padding nos <li>. */}
+              <div className="">
+                <UpcomingTasks
+                  className="
+                    [&_*]:bg-transparent [&_*]:shadow-none
+                    [&>ul>li]:rounded-2xl [&>ul>li]:bg-card/60
+                    [&>ul>li]:shadow-sm [&>ul>li]:p-4 [&>ul>li]:transition
+                    [&>ul>li:hover]:shadow-md
+                    "
+                />
               </div>
             </div>
           </div>
