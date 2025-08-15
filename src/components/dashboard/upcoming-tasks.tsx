@@ -42,9 +42,9 @@ export function UpcomingTasks({ className }: UpcomingTasksProps) {
         <h3 className="text-lg font-semibold text-foreground">O que está por vir</h3>
       </div>
       
-      <div className="space-y-4">
+      <div className="space-y-3">
         {upcomingItems.map((item) => (
-          <div key={item.id} className="flex items-start gap-3">
+          <div key={item.id} className="flex items-start gap-3 p-3 rounded-xl bg-card/40 backdrop-blur-sm shadow-sm border border-white/10">
             <div className={`w-3 h-3 rounded-full ${item.color} mt-2 flex-shrink-0`}></div>
             <div className="flex-1 min-w-0">
               <h4 className="font-medium text-foreground text-sm">{item.title}</h4>

@@ -76,6 +76,9 @@ const Index = () => {
               {/* Calendário – sem card wrapper */}
               <CalendarWidget />
 
+              {/* Linha divisória */}
+              <div className="w-full h-px bg-border/30"></div>
+
               {/* O que está por vir – sem card wrapper */}
               <UpcomingTasks className="bg-transparent border-0 shadow-none" />
             </div>
