@@ -28,7 +28,7 @@ const Index = () => {
           <div className="mb-8">
             <h1 className="text-xl font-bold text-foreground">Seivah</h1>
           </div>
-          
+
           {/* User Profile */}
           <div className="mb-8">
             <div className="flex items-center gap-3 p-4 bg-card/60 backdrop-blur-sm rounded-2xl">
@@ -41,11 +41,11 @@ const Index = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Navigation */}
           <SidebarNav items={navigationItems} />
         </div>
-        
+
         {/* Main Content */}
         <div className="flex-1 p-8">
           {/* Header with Search */}
@@ -54,35 +54,12 @@ const Index = () => {
               <Search className="h-5 w-5" />
             </Button>
           </div>
-          
+
           {/* Layout principal: 2 colunas independentes */}
-<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-  {/* Coluna Esquerda: Chat + Gráficos */}
-  <div className="lg:col-span-2 space-y-6">
-    <ChatInput />
-    <FinancialChart context="professional" />
-    <div className="grid grid-cols-3 gap-6">
-      <div className="col-span-2">
-        <HabitsChart />
-      </div>
-      <div className="col-span-1">
-        <XPIndicator />
-      </div>
-    </div>
-  </div>
-
-  {/* Coluna Direita: Calendário + Próximas Tarefas */}
-  <div className="space-y-6">
-    <CalendarWidget />
-    <UpcomingTasks />
-  </div>
-</div>
-
-
-          {/* Dashboard Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Column */}
+            {/* Coluna Esquerda: Chat + Gráficos */}
             <div className="lg:col-span-2 space-y-6">
+              <ChatInput />
               <FinancialChart context="professional" />
               <div className="grid grid-cols-3 gap-6">
                 <div className="col-span-2">
@@ -93,10 +70,13 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            
-            {/* Right Column */}
-            <div>
-              <UpcomingTasks />
+
+            {/* Coluna Direita: Calendário + O que está por vir (mesmo bloco) */}
+            <div className="bg-card/60 backdrop-blur-sm rounded-2xl p-4 space-y-6 shadow-sm">
+              <CalendarWidget />
+              <div className="border-t border-border pt-4">
+                <UpcomingTasks />
+              </div>
             </div>
           </div>
         </div>
