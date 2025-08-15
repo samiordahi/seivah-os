@@ -9,18 +9,30 @@ import { CalendarWidget } from "@/components/dashboard/calendar-widget";
 import { UpcomingTasks } from "@/components/dashboard/upcoming-tasks";
 import { Button } from "@/components/ui/button";
 import userAvatar from "@/assets/user-avatar.png";
-
-const navigationItems = [
-  { title: "Dash", icon: LayoutDashboard, href: "/", isActive: true },
-  { title: "Finanças", icon: BarChart3, href: "/finances" },
-  { title: "Projetos", icon: FolderOpen, href: "/projects" },
-  { title: "Tarefas", icon: CheckSquare, href: "/tasks" },
-  { title: "Conexões", icon: Users, href: "/connections" },
-];
-
+const navigationItems = [{
+  title: "Dash",
+  icon: LayoutDashboard,
+  href: "/",
+  isActive: true
+}, {
+  title: "Finanças",
+  icon: BarChart3,
+  href: "/finances"
+}, {
+  title: "Projetos",
+  icon: FolderOpen,
+  href: "/projects"
+}, {
+  title: "Tarefas",
+  icon: CheckSquare,
+  href: "/tasks"
+}, {
+  title: "Conexões",
+  icon: Users,
+  href: "/connections"
+}];
 const Index = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background">
+  return <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background">
       <div className="flex">
         {/* Sidebar */}
         <div className="w-64 min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6">
@@ -56,9 +68,9 @@ const Index = () => {
           </div>
           
           {/* Chat and Right Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-3">
             {/* Chat Input */}
-            <div className="lg:col-span-2">
+            <div className="lg:-bottom-0 ">
               <ChatInput />
             </div>
             
@@ -90,8 +102,6 @@ const Index = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
