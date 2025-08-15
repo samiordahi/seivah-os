@@ -55,18 +55,29 @@ const Index = () => {
             </Button>
           </div>
           
-          {/* Chat and Right Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-3">
-            {/* Chat Input */}
-            <div className="lg:col-span-2 self-start h-auto">
-              <ChatInput />
-            </div>
-            
-            {/* Right Column - Calendar */}
-            <div className="self-start">
-              <CalendarWidget />
-            </div>
-          </div>
+          {/* Layout principal: 2 colunas independentes */}
+<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  {/* Coluna Esquerda: Chat + Gráficos */}
+  <div className="lg:col-span-2 space-y-6">
+    <ChatInput />
+    <FinancialChart context="professional" />
+    <div className="grid grid-cols-3 gap-6">
+      <div className="col-span-2">
+        <HabitsChart />
+      </div>
+      <div className="col-span-1">
+        <XPIndicator />
+      </div>
+    </div>
+  </div>
+
+  {/* Coluna Direita: Calendário + Próximas Tarefas */}
+  <div className="space-y-6">
+    <CalendarWidget />
+    <UpcomingTasks />
+  </div>
+</div>
+
 
           {/* Dashboard Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
