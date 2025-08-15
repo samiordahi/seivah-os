@@ -71,20 +71,15 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Coluna Direita: Calendário + O que está por vir (único bloco) */}
-            <div className="rounded-2xl bg-card/60 backdrop-blur-sm shadow-sm overflow-hidden">
-              <div className="p-4">
-                <CalendarWidget />
-              </div>
-              <div className="border-t border-border" />
-              <div className="p-4">
-                <UpcomingTasks />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            {/* Coluna Direita: Calendário + O que está por vir (sem bloco, fundo transparente) */}
+<div className="space-y-6">
+  <div>
+    <CalendarWidget />
+  </div>
+  <div>
+    <UpcomingTasks />
+  </div>
+</div>
   );
 };
 
