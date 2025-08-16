@@ -1,4 +1,4 @@
-import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search } from "lucide-react";
+import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut } from "lucide-react";
 import { SidebarNav } from "@/components/ui/sidebar-nav";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChatInput } from "@/components/dashboard/chat-input";
@@ -8,6 +8,7 @@ import { XPIndicator } from "@/components/dashboard/xp-indicator";
 import { CalendarWidget } from "@/components/dashboard/calendar-widget";
 import { UpcomingTasks } from "@/components/dashboard/upcoming-tasks";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
 import userAvatar from "@/assets/user-avatar.png";
 
 const navigationItems = [
@@ -19,6 +20,7 @@ const navigationItems = [
 ];
 
 const Index = () => {
+  const { user, signOut } = useAuth();
   return (
     <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background">
       <div className="flex">
@@ -50,14 +52,26 @@ const Index = () => {
         <div className="flex-1 p-8">
           {/* Header with Search and Greeting */}
           <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-xl font-medium text-foreground">
-                Olá, <span className="text-coral-primary">Usuário</span>
-              </h2>
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-medium text-foreground">
+                  Olá, <span className="text-coral-primary">{user?.email?.split('@')[0] || 'Usuário'}</span>
+                </h2>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button size="icon" variant="ghost" className="text-coral-primary hover:bg-coral-primary/10">
+                  <Search className="h-5 w-5" />
+                </Button>
+                <Button 
+                  size="icon" 
+                  variant="ghost" 
+                  onClick={signOut}
+                  className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                >
+                  <LogOut className="h-5 w-5" />
+                </Button>
+              </div>
             </div>
-            <Button size="icon" variant="ghost" className="text-coral-primary hover:bg-coral-primary/10">
-              <Search className="h-5 w-5" />
-            </Button>
           </div>
 
           {/* Layout principal: 2 colunas */}
