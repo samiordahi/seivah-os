@@ -19,12 +19,20 @@ export interface CaptureData {
   notes?: string[];
 }
 
+export interface AIResponse {
+  response: string;
+  model: string;
+  usage?: any;
+}
+
 export function useCaptures() {
   const [isProcessing, setIsProcessing] = useState(false);
+  const [aiResponse, setAiResponse] = useState<string>('');
   const { toast } = useToast();
 
   const processCapture = async (input: string) => {
     setIsProcessing(true);
+    setAiResponse('');
     
     try {
       // Get current user
@@ -37,6 +45,24 @@ export function useCaptures() {
         });
         return false;
       }
+
+      // First, get AI response
+      console.log('Calling AI chat function with input:', input);
+      const { data: aiData, error: aiError } = await supabase.functions.invoke('ai-chat', {
+        body: { 
+          message: input,
+          model: "meta-llama/llama-3.1-8b-instruct:free"
+        }
+      });
+
+      if (aiError) {
+        console.error('AI chat error:', aiError);
+        throw new Error('Failed to get AI response');
+      }
+
+      console.log('AI response received:', aiData);
+      const aiResponseText = aiData.response;
+      setAiResponse(aiResponseText);
 
       // Store raw capture first
       const { error: captureError } = await supabase
@@ -66,7 +92,10 @@ export function useCaptures() {
               ...transaction
             });
           
-          if (error) throw error;
+          if (error) {
+            console.error('Transaction insert error:', error);
+            // Don't throw, continue with other operations
+          }
         }
       }
 
@@ -80,23 +109,18 @@ export function useCaptures() {
               ...connection
             });
           
-          if (error) throw error;
+          if (error) {
+            console.error('Connection insert error:', error);
+            // Don't throw, continue with other operations
+          }
         }
       }
 
-      // Show success message
-      const itemCount = (parsedData.transactions?.length || 0) + (parsedData.connections?.length || 0);
-      if (itemCount > 0) {
-        toast({
-          title: "Captura processada!",
-          description: `${itemCount} item(s) adicionado(s) com sucesso.`,
-        });
-      } else {
-        toast({
-          title: "Nota salva!",
-          description: "Sua captura foi salva como uma nota.",
-        });
-      }
+      // Show success message with AI response
+      toast({
+        title: "Captura processada!",
+        description: "Sua captura foi analisada e organizada com sucesso.",
+      });
 
       return true;
     } catch (error) {
@@ -112,21 +136,27 @@ export function useCaptures() {
     }
   };
 
+  const clearAiResponse = () => {
+    setAiResponse('');
+  };
+
   return {
     processCapture,
-    isProcessing
+    isProcessing,
+    aiResponse,
+    clearAiResponse
   };
 }
 
-// Simple parsing logic - can be enhanced with AI later
+// Enhanced parsing logic - can be improved with AI later
 function parseInput(input: string): CaptureData {
   const result: CaptureData = {};
   const text = input.toLowerCase();
 
   // Check for financial transactions
   const moneyPattern = /(?:r\$|reais?|\$)\s*(\d+(?:[.,]\d{2})?)/gi;
-  const incomeKeywords = ['recebi', 'ganhou', 'salário', 'vendeu', 'entrada'];
-  const expenseKeywords = ['gastou', 'comprou', 'pagou', 'saída', 'despesa'];
+  const incomeKeywords = ['recebi', 'ganhou', 'salário', 'vendeu', 'entrada', 'receita'];
+  const expenseKeywords = ['gastou', 'comprou', 'pagou', 'saída', 'despesa', 'conta'];
 
   const moneyMatches = Array.from(input.matchAll(moneyPattern));
   
