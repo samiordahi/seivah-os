@@ -1,9 +1,10 @@
-import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut, MessageSquare } from "lucide-react";
+import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut, MessageSquare, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { SidebarNav } from "@/components/ui/sidebar-nav";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import userAvatar from "@/assets/user-avatar.png";
 
 interface DashboardLayoutProps {
@@ -13,6 +14,7 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, signOut } = useAuth();
   const location = useLocation();
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const navigationItems = [
     { title: "Dash", icon: LayoutDashboard, href: "/", isActive: location.pathname === "/" },
@@ -27,27 +29,37 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background">
       <div className="flex">
         {/* Sidebar */}
-        <div className="w-64 min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6">
-          {/* Logo */}
-          <div className="mb-8">
-            <h1 className="text-xl font-bold text-foreground">Seivah</h1>
+        <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6 transition-all duration-300`}>
+          {/* Logo and Collapse Button */}
+          <div className="mb-8 flex items-center justify-between">
+            {!isCollapsed && <h1 className="text-xl font-bold text-foreground">Seivah</h1>}
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className="text-muted-foreground hover:text-foreground hover:bg-card/50"
+            >
+              {isCollapsed ? <PanelLeftOpen className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
+            </Button>
           </div>
 
           {/* User Profile */}
           <div className="mb-8">
-            <div className="flex items-center gap-3 p-4 bg-card/60 backdrop-blur-sm rounded-2xl">
+            <div className={`flex items-center gap-3 p-4 bg-card/60 backdrop-blur-sm rounded-2xl ${isCollapsed ? 'justify-center' : ''}`}>
               <Avatar className="h-12 w-12">
                 <AvatarImage src={userAvatar} alt="User" />
                 <AvatarFallback>U</AvatarFallback>
               </Avatar>
-              <div>
-                <p className="font-medium text-foreground">Nome Usuário</p>
-              </div>
+              {!isCollapsed && (
+                <div>
+                  <p className="font-medium text-foreground">Nome Usuário</p>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Navigation */}
-          <SidebarNav items={navigationItems} />
+          <SidebarNav items={navigationItems} isCollapsed={isCollapsed} />
         </div>
 
         {/* Main Content */}
