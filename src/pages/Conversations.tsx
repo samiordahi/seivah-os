@@ -47,51 +47,60 @@ export default function Conversations() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-[70vh] flex flex-col gap-4">
-        <Card className="bg-card/70 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle>Conversas</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4 max-h-[50vh] overflow-y-auto pr-2">
-              {messages.length === 0 && (
-                <p className="text-sm text-muted-foreground">Comece digitando uma mensagem abaixo.</p>
-              )}
-              {messages.map((m, idx) => (
-                <div key={idx} className={m.role === 'user' ? 'text-right' : 'text-left'}>
-                  <div className={
-                    'inline-block rounded-2xl px-4 py-2 ' +
-                    (m.role === 'user' ? 'bg-coral-primary text-white' : 'bg-muted text-foreground')
-                  }>
-                    {m.content}
-                  </div>
-                </div>
-              ))}
+      <div className="flex flex-col h-[calc(100vh-12rem)]">
+        {/* Chat Messages Area */}
+        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+          {messages.length === 0 && (
+            <div className="flex items-center justify-center h-full">
+              <p className="text-muted-foreground text-center">
+                Comece digitando uma mensagem abaixo.
+              </p>
             </div>
-          </CardContent>
-        </Card>
+          )}
+          
+          {messages.map((message, idx) => (
+            <div key={idx} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`max-w-[70%] ${message.role === 'user' ? 'order-2' : 'order-1'}`}>
+                <div className={`
+                  px-4 py-3 rounded-2xl text-sm leading-relaxed
+                  ${message.role === 'user' 
+                    ? 'bg-coral-primary text-white rounded-br-md' 
+                    : 'bg-card border border-border text-foreground rounded-bl-md'
+                  }
+                `}>
+                  {message.content}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="relative">
-          <Input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={isProcessing ? 'Processando...' : 'Escreva sua mensagem...'}
-            disabled={isProcessing}
-            className="pr-14"
-          />
-          <Button
-            type="submit"
-            size="icon"
-            disabled={!input.trim() || isProcessing}
-            className="absolute right-1 top-1/2 -translate-y-1/2 bg-coral-primary hover:bg-coral-primary/90 text-white"
-          >
-            {isProcessing ? (
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-            ) : (
-              <Send className="h-4 w-4" />
-            )}
-          </Button>
-        </form>
+        {/* Fixed Input Area */}
+        <div className="border-t border-border bg-background/95 backdrop-blur-sm p-4">
+          <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="relative">
+            <div className="flex items-center gap-2 bg-card border border-border rounded-2xl p-2">
+              <Input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder={isProcessing ? "Processando..." : "Digite sua mensagem..."}
+                disabled={isProcessing}
+                className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-3"
+              />
+              <Button
+                type="submit"
+                size="icon"
+                disabled={!input.trim() || isProcessing}
+                className="bg-coral-primary hover:bg-coral-primary/90 text-white rounded-xl h-9 w-9 flex-shrink-0"
+              >
+                {isProcessing ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                ) : (
+                  <Send className="h-4 w-4" />
+                )}
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </DashboardLayout>
   );
