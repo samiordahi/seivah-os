@@ -21,6 +21,7 @@ const Index = () => {
           {/* Header */}
           <header className="flex items-center justify-between p-4 border-b border-border/50">
             <div className="flex items-center gap-4">
+              <SidebarTrigger />
               <h2 className="text-xl font-medium text-foreground">
                 Olá, <span className="text-coral-primary">{user?.email?.split('@')[0] || 'Usuário'}</span>
               </h2>
