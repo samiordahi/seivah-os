@@ -18,7 +18,7 @@ export function ChatSidebar() {
   const { state } = useSidebar();
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border/50">
+    <Sidebar className="border-r border-border/50">
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2">
           <SidebarTrigger />
