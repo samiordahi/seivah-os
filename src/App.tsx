@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
-import Conversations from "./pages/Conversations";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -22,14 +21,6 @@ const App = () => (
           <Route path="/" element={
             <ProtectedRoute>
               <Index />
-            </ProtectedRoute>
-          } />
-          <Route path="/conversations" element={
-            <ProtectedRoute>
-              {/** Lazy import not necessary for now */}
-              {/** Keeping consistent UI */}
-              {/** Page shows chat thread */}
-              <Conversations />
             </ProtectedRoute>
           } />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

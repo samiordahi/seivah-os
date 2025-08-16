@@ -30,7 +30,7 @@ export function useCaptures() {
   const [aiResponse, setAiResponse] = useState<string>('');
   const { toast } = useToast();
 
-  const processCapture = async (input: string): Promise<{ success: boolean; aiText?: string }> => {
+  const processCapture = async (input: string) => {
     setIsProcessing(true);
     setAiResponse('');
     
@@ -43,25 +43,26 @@ export function useCaptures() {
           description: "Você precisa estar logado para adicionar capturas.",
           variant: "destructive",
         });
-        return { success: false };
+        return false;
       }
 
       // First, get AI response
       console.log('Calling AI chat function with input:', input);
-      let aiResponseText = '';
-      try {
-        const { data: aiData, error: aiError } = await supabase.functions.invoke('ai-chat', {
-          body: { 
-            message: input,
-            model: "meta-llama/llama-3.1-8b-instruct:free"
-          }
-        });
-        if (aiError) throw aiError;
-        aiResponseText = aiData?.response || '';
-        setAiResponse(aiResponseText);
-      } catch (err) {
-        console.error('AI chat error:', err);
+      const { data: aiData, error: aiError } = await supabase.functions.invoke('ai-chat', {
+        body: { 
+          message: input,
+          model: "meta-llama/llama-3.1-8b-instruct:free"
+        }
+      });
+
+      if (aiError) {
+        console.error('AI chat error:', aiError);
+        throw new Error('Failed to get AI response');
       }
+
+      console.log('AI response received:', aiData);
+      const aiResponseText = aiData.response;
+      setAiResponse(aiResponseText);
 
       // Store raw capture first
       const { error: captureError } = await supabase
@@ -121,7 +122,7 @@ export function useCaptures() {
         description: "Sua captura foi analisada e organizada com sucesso.",
       });
 
-      return { success: true, aiText: aiResponseText };
+      return true;
     } catch (error) {
       console.error('Error processing capture:', error);
       toast({
@@ -129,7 +130,7 @@ export function useCaptures() {
         description: "Não foi possível processar sua captura. Tente novamente.",
         variant: "destructive",
       });
-      return { success: false };
+      return false;
     } finally {
       setIsProcessing(false);
     }
