@@ -64,28 +64,21 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
         {/* Main Content */}
         <div className="flex-1 p-8">
-          {/* Header with Search and Greeting */}
+          {/* Header with Greeting and Logout */}
           <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-xl font-medium text-foreground">
-                  Olá, <span className="text-coral-primary">{user?.email?.split('@')[0] || 'Usuário'}</span>
-                </h2>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button size="icon" variant="ghost" className="text-coral-primary hover:bg-coral-primary/10">
-                  <Search className="h-5 w-5" />
-                </Button>
-                <Button 
-                  size="icon" 
-                  variant="ghost" 
-                  onClick={signOut}
-                  className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                >
-                  <LogOut className="h-5 w-5" />
-                </Button>
-              </div>
+            <div>
+              <h2 className="text-xl font-medium text-foreground">
+                Olá, <span className="text-coral-primary">{user?.email?.split('@')[0] || 'Usuário'}</span>
+              </h2>
             </div>
+            <Button 
+              size="icon" 
+              variant="ghost" 
+              onClick={signOut}
+              className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+            >
+              <LogOut className="h-5 w-5" />
+            </Button>
           </div>
 
           {/* Content */}
