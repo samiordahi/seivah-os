@@ -1,0 +1,85 @@
+import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut, MessageSquare } from "lucide-react";
+import { SidebarNav } from "@/components/ui/sidebar-nav";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
+import { useLocation } from "react-router-dom";
+import userAvatar from "@/assets/user-avatar.png";
+
+interface DashboardLayoutProps {
+  children: React.ReactNode;
+}
+
+export function DashboardLayout({ children }: DashboardLayoutProps) {
+  const { user, signOut } = useAuth();
+  const location = useLocation();
+
+  const navigationItems = [
+    { title: "Dash", icon: LayoutDashboard, href: "/", isActive: location.pathname === "/" },
+    { title: "Finanças", icon: BarChart3, href: "/finances", isActive: location.pathname === "/finances" },
+    { title: "Projetos", icon: FolderOpen, href: "/projects", isActive: location.pathname === "/projects" },
+    { title: "Tarefas", icon: CheckSquare, href: "/tasks", isActive: location.pathname === "/tasks" },
+    { title: "Conexões", icon: Users, href: "/connections", isActive: location.pathname === "/connections" },
+    { title: "Conversas", icon: MessageSquare, href: "/conversations", isActive: location.pathname === "/conversations" },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background">
+      <div className="flex">
+        {/* Sidebar */}
+        <div className="w-64 min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6">
+          {/* Logo */}
+          <div className="mb-8">
+            <h1 className="text-xl font-bold text-foreground">Seivah</h1>
+          </div>
+
+          {/* User Profile */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 p-4 bg-card/60 backdrop-blur-sm rounded-2xl">
+              <Avatar className="h-12 w-12">
+                <AvatarImage src={userAvatar} alt="User" />
+                <AvatarFallback>U</AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="font-medium text-foreground">Nome Usuário</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <SidebarNav items={navigationItems} />
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 p-8">
+          {/* Header with Search and Greeting */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-medium text-foreground">
+                  Olá, <span className="text-coral-primary">{user?.email?.split('@')[0] || 'Usuário'}</span>
+                </h2>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button size="icon" variant="ghost" className="text-coral-primary hover:bg-coral-primary/10">
+                  <Search className="h-5 w-5" />
+                </Button>
+                <Button 
+                  size="icon" 
+                  variant="ghost" 
+                  onClick={signOut}
+                  className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                >
+                  <LogOut className="h-5 w-5" />
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
