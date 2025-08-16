@@ -6,17 +6,24 @@
 
 @layer base {
   :root {
-    /* Core coral/salmon palette */
-    --coral-primary: 12 100% 75%;
-    --coral-secondary: 15 85% 85%;
-    --coral-accent: 20 95% 88%;
-    --coral-muted: 25 60% 92%;
-    --coral-soft: 30 40% 96%;
+    /* Seivah palette from provided colors */
+    --seivah-salmon: 12 67% 76%;        /* #F3A592 */
+    --seivah-green: 108 34% 72%;        /* #B1D1AD */ 
+    --seivah-peach: 35 91% 84%;         /* #FED4AE */
+    --seivah-coral: 14 63% 49%;         /* #CA4D2E */
+    --seivah-blue: 200 22% 75%;         /* #B1C3CD */
     
-    /* Gradients */
-    --gradient-main: linear-gradient(135deg, hsl(12 100% 75%), hsl(20 95% 88%));
-    --gradient-soft: linear-gradient(180deg, hsl(25 60% 92%), hsl(30 40% 96%));
-    --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
+    /* Core coral/salmon palette */
+    --coral-primary: 12 67% 76%;        /* Using seivah-salmon */
+    --coral-secondary: 35 91% 84%;      /* Using seivah-peach */
+    --coral-accent: 14 63% 49%;         /* Using seivah-coral */
+    --coral-muted: 108 34% 72%;         /* Using seivah-green */
+    --coral-soft: 200 22% 75%;          /* Using seivah-blue */
+    
+    /* Sidebar gradient using the palette */
+    --gradient-sidebar: linear-gradient(135deg, hsl(12 67% 76%), hsl(108 34% 72%), hsl(35 91% 84%), hsl(14 63% 49%), hsl(200 22% 75%));
+    --gradient-main: linear-gradient(135deg, hsl(12 67% 76%), hsl(35 91% 84%));
+    --gradient-soft: linear-gradient(180deg, hsl(108 34% 72%), hsl(200 22% 75%));
     
     /* Design system tokens */
     --background: 25 60% 92%;

@@ -1,4 +1,4 @@
-import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, MessageSquare } from "lucide-react";
+import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, MessageSquare, Menu } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useLocation, NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 import userAvatar from "@/assets/user-avatar.png";
@@ -30,12 +31,22 @@ export function AppSidebar() {
   const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar className="bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm border-r border-border/50">
+    <Sidebar 
+      className="border-r border-border/50"
+      style={{
+        background: 'var(--gradient-sidebar)'
+      }}
+    >
       <SidebarHeader className="p-6">
+        {/* Trigger button inside sidebar */}
+        <div className="flex justify-end mb-4">
+          <SidebarTrigger className="h-8 w-8 bg-white/20 hover:bg-white/30 text-white border-0" />
+        </div>
+
         {/* Logo */}
         <div className="mb-8">
           <h1 className={cn(
-            "font-bold text-foreground transition-all duration-200",
+            "font-bold text-white transition-all duration-200",
             isCollapsed ? "text-sm text-center" : "text-xl"
           )}>
             {isCollapsed ? "S" : "Seivah"}
@@ -45,13 +56,13 @@ export function AppSidebar() {
         {/* User Profile */}
         {!isCollapsed && (
           <div className="mb-8">
-            <div className="flex items-center gap-3 p-4 bg-card/60 backdrop-blur-sm rounded-2xl">
+            <div className="flex items-center gap-3 p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
               <Avatar className="h-12 w-12">
                 <AvatarImage src={userAvatar} alt="User" />
                 <AvatarFallback>U</AvatarFallback>
               </Avatar>
               <div>
-                <p className="font-medium text-foreground">Nome Usuário</p>
+                <p className="font-medium text-white">Nome Usuário</p>
               </div>
             </div>
           </div>
@@ -79,10 +90,10 @@ export function AppSidebar() {
                       <NavLink 
                         to={item.href}
                         className={cn(
-                          "flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-2xl transition-all duration-200",
+                          "flex items-center gap-3 px-4 py-4 text-sm font-medium rounded-2xl transition-all duration-200 mb-3",
                           isActive
-                            ? "bg-card text-foreground shadow-sm"
-                            : "text-muted-foreground hover:text-foreground hover:bg-card/50",
+                            ? "bg-white/30 text-white shadow-sm backdrop-blur-sm"
+                            : "text-white/80 hover:text-white hover:bg-white/20",
                           isCollapsed && "justify-center"
                         )}
                       >
