@@ -4,9 +4,9 @@ import { Button } from '@/components/ui/button';
 import { useLocation } from 'react-router-dom';
 import { useCaptures } from '@/hooks/use-captures';
 import { Send } from 'lucide-react';
-import { SidebarProvider, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { AppSidebar } from '@/components/layout/app-sidebar';
+import { ChatSidebar } from '@/components/conversations/chat-sidebar';
 import { ChatMessage } from '@/components/conversations/chat-message';
 
 interface Message {
@@ -49,16 +49,13 @@ export default function Conversations() {
 
   return (
     <SidebarProvider defaultOpen={true}>
-      <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background flex w-full">
-        <AppSidebar />
+      <div className="flex h-screen w-full">
+        <ChatSidebar />
         
         <SidebarInset className="flex flex-col">
           {/* Header */}
           <header className="sticky top-0 z-10 flex h-14 items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6">
-            <div className="flex items-center gap-4">
-              <SidebarTrigger />
-              <h1 className="text-lg font-semibold">Conversa</h1>
-            </div>
+            <h1 className="text-lg font-semibold">Conversa</h1>
           </header>
 
           {/* Chat Area */}
