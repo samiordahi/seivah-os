@@ -45,7 +45,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
           {/* User Profile */}
           <div className="mb-8">
-            <div className={`flex items-center gap-3 p-4 bg-card/60 backdrop-blur-sm rounded-2xl ${isCollapsed ? 'justify-center' : ''}`}>
+            <div className={`flex items-center gap-3 p-4 rounded-2xl ${isCollapsed ? 'justify-center bg-transparent p-2' : 'bg-card/60 backdrop-blur-sm'}`}>
               <Avatar className="h-12 w-12">
                 <AvatarImage src={userAvatar} alt="User" />
                 <AvatarFallback>U</AvatarFallback>

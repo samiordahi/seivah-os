@@ -19,11 +19,13 @@ export function SidebarNav({ items, isCollapsed = false }: SidebarNavProps) {
           key={item.href}
           href={item.href}
           className={cn(
-            "flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-2xl transition-all duration-200",
+            "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-all duration-200",
             item.isActive
-              ? "bg-card text-foreground shadow-sm"
-              : "text-muted-foreground hover:text-foreground hover:bg-card/50",
-            isCollapsed && "justify-center"
+              ? isCollapsed 
+                ? "bg-card text-foreground shadow-sm rounded-full w-12 h-12 justify-center p-0"
+                : "bg-card text-foreground shadow-sm rounded-2xl"
+              : "text-muted-foreground hover:text-foreground hover:bg-card/50 rounded-2xl",
+            isCollapsed && !item.isActive && "justify-center rounded-2xl"
           )}
           title={isCollapsed ? item.title : undefined}
         >
