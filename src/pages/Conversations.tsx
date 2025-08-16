@@ -1,10 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useEffect, useRef, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useLocation } from 'react-router-dom';
 import { useCaptures } from '@/hooks/use-captures';
 import { Send } from 'lucide-react';
+import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { ChatSidebar } from '@/components/conversations/chat-sidebar';
+import { ChatMessage } from '@/components/conversations/chat-message';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -45,51 +48,65 @@ export default function Conversations() {
   };
 
   return (
-    <div className="min-h-[70vh] flex flex-col gap-4">
-      <Card className="bg-card/70 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle>Conversas</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4 max-h-[50vh] overflow-y-auto pr-2">
-            {messages.length === 0 && (
-              <p className="text-sm text-muted-foreground">Comece digitando uma mensagem abaixo.</p>
-            )}
-            {messages.map((m, idx) => (
-              <div key={idx} className={m.role === 'user' ? 'text-right' : 'text-left'}>
-                <div className={
-                  'inline-block rounded-2xl px-4 py-2 ' +
-                  (m.role === 'user' ? 'bg-coral-primary text-white' : 'bg-muted text-foreground')
-                }>
-                  {m.content}
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+    <SidebarProvider defaultOpen={true}>
+      <div className="flex h-screen w-full">
+        <ChatSidebar />
+        
+        <SidebarInset className="flex flex-col">
+          {/* Header */}
+          <header className="sticky top-0 z-10 flex h-14 items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6">
+            <h1 className="text-lg font-semibold">Conversa</h1>
+          </header>
 
-      <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="relative">
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder={isProcessing ? 'Processando...' : 'Escreva sua mensagem...'}
-          disabled={isProcessing}
-          className="pr-14"
-        />
-        <Button
-          type="submit"
-          size="icon"
-          disabled={!input.trim() || isProcessing}
-          className="absolute right-1 top-1/2 -translate-y-1/2 bg-coral-primary hover:bg-coral-primary/90 text-white"
-        >
-          {isProcessing ? (
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-          ) : (
-            <Send className="h-4 w-4" />
-          )}
-        </Button>
-      </form>
-    </div>
+          {/* Chat Area */}
+          <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full">
+            <ScrollArea className="flex-1">
+              <div className="min-h-0">
+                {messages.length === 0 ? (
+                  <div className="flex items-center justify-center h-64">
+                    <p className="text-muted-foreground">Comece uma nova conversa digitando uma mensagem abaixo.</p>
+                  </div>
+                ) : (
+                  <div>
+                    {messages.map((message, idx) => (
+                      <ChatMessage
+                        key={idx}
+                        role={message.role}
+                        content={message.content}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </ScrollArea>
+
+            {/* Input Area */}
+            <div className="border-t bg-background p-4">
+              <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="relative max-w-4xl mx-auto">
+                <Input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder={isProcessing ? 'Processando...' : 'Escreva sua mensagem...'}
+                  disabled={isProcessing}
+                  className="pr-14 h-12 bg-background border-input"
+                />
+                <Button
+                  type="submit"
+                  size="icon"
+                  disabled={!input.trim() || isProcessing}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-coral-primary hover:bg-coral-primary/90 text-white"
+                >
+                  {isProcessing ? (
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
+                </Button>
+              </form>
+            </div>
+          </div>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
   );
 }
