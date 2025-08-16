@@ -1,4 +1,4 @@
-import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut } from "lucide-react";
+import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut, MessageSquare } from "lucide-react";
 import { SidebarNav } from "@/components/ui/sidebar-nav";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChatInput } from "@/components/dashboard/chat-input";
@@ -17,6 +17,7 @@ const navigationItems = [
   { title: "Projetos", icon: FolderOpen, href: "/projects" },
   { title: "Tarefas", icon: CheckSquare, href: "/tasks" },
   { title: "Conexões", icon: Users, href: "/connections" },
+  { title: "Conversas", icon: MessageSquare, href: "/conversations" },
 ];
 
 const Index = () => {
