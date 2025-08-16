@@ -4,10 +4,10 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useLocation } from 'react-router-dom';
 import { useCaptures } from '@/hooks/use-captures';
+import { useProfile } from '@/hooks/use-profile';
 import { Send } from 'lucide-react';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import userAvatar from '@/assets/user-avatar.png';
 import seivahLogo from '@/assets/seivah-logo.png';
 interface Message {
   role: 'user' | 'assistant';
@@ -18,6 +18,7 @@ export default function Conversations() {
   const [input, setInput] = useState('');
   const location = useLocation();
   const initialMessage = (location.state as any)?.initialMessage as string | undefined;
+  const { profile } = useProfile();
   const {
     processCapture,
     isProcessing
@@ -87,8 +88,8 @@ export default function Conversations() {
               
               {message.role === 'user' && (
                 <Avatar className="h-8 w-8 flex-shrink-0">
-                  <AvatarImage src={userAvatar} alt="Usuário" />
-                  <AvatarFallback>U</AvatarFallback>
+                  <AvatarImage src={profile?.avatar_url || undefined} alt="Usuário" />
+                  <AvatarFallback>{profile?.display_name?.[0] || 'U'}</AvatarFallback>
                 </Avatar>
               )}
             </div>
