@@ -67,16 +67,13 @@ export default function Conversations() {
           {messages.map((message, idx) => (
             <div key={idx} className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {message.role === 'assistant' && (
-                <div className="flex flex-col items-center gap-1">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={seivahLogo} alt="Seivah" />
-                    <AvatarFallback>S</AvatarFallback>
-                  </Avatar>
-                  <span className="text-xs text-muted-foreground font-medium">Seivah</span>
-                </div>
+                <Avatar className="h-8 w-8 flex-shrink-0">
+                  <AvatarImage src={seivahLogo} alt="Seivah" />
+                  <AvatarFallback>S</AvatarFallback>
+                </Avatar>
               )}
               
-              <div className={`max-w-[70%] ${message.role === 'user' ? 'order-2' : 'order-1'}`}>
+              <div className="max-w-[70%]">
                 <div className={`
                   px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-md
                   ${message.role === 'user' 
@@ -89,13 +86,10 @@ export default function Conversations() {
               </div>
               
               {message.role === 'user' && (
-                <div className="flex flex-col items-center gap-1">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={userAvatar} alt="Usuário" />
-                    <AvatarFallback>U</AvatarFallback>
-                  </Avatar>
-                  <span className="text-xs text-muted-foreground font-medium">Você</span>
-                </div>
+                <Avatar className="h-8 w-8 flex-shrink-0">
+                  <AvatarImage src={userAvatar} alt="Usuário" />
+                  <AvatarFallback>U</AvatarFallback>
+                </Avatar>
               )}
             </div>
           ))}
