@@ -1,6 +1,4 @@
-import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut, MessageSquare } from "lucide-react";
-import { SidebarNav } from "@/components/ui/sidebar-nav";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Search, LogOut } from "lucide-react";
 import { ChatInput } from "@/components/dashboard/chat-input";
 import { FinancialChart } from "@/components/dashboard/financial-chart";
 import { HabitsChart } from "@/components/dashboard/habits-chart";
@@ -9,103 +7,74 @@ import { CalendarWidget } from "@/components/dashboard/calendar-widget";
 import { UpcomingTasks } from "@/components/dashboard/upcoming-tasks";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
-import userAvatar from "@/assets/user-avatar.png";
-
-const navigationItems = [
-  { title: "Dash", icon: LayoutDashboard, href: "/", isActive: true },
-  { title: "Finanças", icon: BarChart3, href: "/finances" },
-  { title: "Projetos", icon: FolderOpen, href: "/projects" },
-  { title: "Tarefas", icon: CheckSquare, href: "/tasks" },
-  { title: "Conexões", icon: Users, href: "/connections" },
-  { title: "Conversas", icon: MessageSquare, href: "/conversations" },
-];
+import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/layout/app-sidebar";
 
 const Index = () => {
   const { user, signOut } = useAuth();
   return (
-    <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background">
-      <div className="flex">
-        {/* Sidebar */}
-        <div className="w-64 min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6">
-          {/* Logo */}
-          <div className="mb-8">
-            <h1 className="text-xl font-bold text-foreground">Seivah</h1>
-          </div>
-
-          {/* User Profile */}
-          <div className="mb-8">
-            <div className="flex items-center gap-3 p-4 bg-card/60 backdrop-blur-sm rounded-2xl">
-              <Avatar className="h-12 w-12">
-                <AvatarImage src={userAvatar} alt="User" />
-                <AvatarFallback>U</AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="font-medium text-foreground">Nome Usuário</p>
-              </div>
+    <SidebarProvider defaultOpen={true}>
+      <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background flex w-full">
+        <AppSidebar />
+        
+        <SidebarInset className="flex-1">
+          {/* Header */}
+          <header className="flex items-center justify-between p-4 border-b border-border/50">
+            <div className="flex items-center gap-4">
+              <SidebarTrigger />
+              <h2 className="text-xl font-medium text-foreground">
+                Olá, <span className="text-coral-primary">{user?.email?.split('@')[0] || 'Usuário'}</span>
+              </h2>
             </div>
-          </div>
-
-          {/* Navigation */}
-          <SidebarNav items={navigationItems} />
-        </div>
-
-        {/* Main Content */}
-        <div className="flex-1 p-8">
-          {/* Header with Search and Greeting */}
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-xl font-medium text-foreground">
-                  Olá, <span className="text-coral-primary">{user?.email?.split('@')[0] || 'Usuário'}</span>
-                </h2>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button size="icon" variant="ghost" className="text-coral-primary hover:bg-coral-primary/10">
-                  <Search className="h-5 w-5" />
-                </Button>
-                <Button 
-                  size="icon" 
-                  variant="ghost" 
-                  onClick={signOut}
-                  className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                >
-                  <LogOut className="h-5 w-5" />
-                </Button>
-              </div>
+            <div className="flex items-center gap-2">
+              <Button size="icon" variant="ghost" className="text-coral-primary hover:bg-coral-primary/10">
+                <Search className="h-5 w-5" />
+              </Button>
+              <Button 
+                size="icon" 
+                variant="ghost" 
+                onClick={signOut}
+                className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+              >
+                <LogOut className="h-5 w-5" />
+              </Button>
             </div>
-          </div>
+          </header>
 
-          {/* Layout principal: 2 colunas */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Coluna Esquerda: Chat + Gráficos */}
-            <div className="lg:col-span-2 space-y-6">
-              <ChatInput />
-              <FinancialChart context="professional" />
-              <div className="grid grid-cols-3 gap-6 items-end">
-                <div className="col-span-2">
-                  <HabitsChart />
-                </div>
-                <div className="col-span-1">
-                  <XPIndicator />
+          {/* Main Content */}
+          <div className="p-8">
+            {/* Layout principal: 2 colunas */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Coluna Esquerda: Chat + Gráficos */}
+              <div className="lg:col-span-2 space-y-6">
+                <ChatInput />
+                <FinancialChart context="professional" />
+                <div className="grid grid-cols-3 gap-6 items-end">
+                  <div className="col-span-2">
+                    <HabitsChart />
+                  </div>
+                  <div className="col-span-1">
+                    <XPIndicator />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Coluna Direita: calendário solto + tarefas */}
-            <div className="space-y-4">
-              {/* Calendário – sem card wrapper */}
-              <CalendarWidget />
+              {/* Coluna Direita: calendário solto + tarefas */}
+              <div className="space-y-4">
+                {/* Calendário – sem card wrapper */}
+                <CalendarWidget />
 
-              {/* Linha divisória */}
-              <div className="w-full h-px bg-border/30"></div>
+                {/* Linha divisória */}
+                <div className="w-full h-px bg-border/30"></div>
 
-              {/* O que está por vir – sem card wrapper */}
-              <UpcomingTasks className="bg-transparent border-0 shadow-none" />
+                {/* O que está por vir – sem card wrapper */}
+                <UpcomingTasks className="bg-transparent border-0 shadow-none" />
+              </div>
             </div>
           </div>
-        </div>
+        </SidebarInset>
       </div>
-    </div>
+    </SidebarProvider>
   );
 };
 
