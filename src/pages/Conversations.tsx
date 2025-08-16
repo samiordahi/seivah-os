@@ -6,6 +6,9 @@ import { useLocation } from 'react-router-dom';
 import { useCaptures } from '@/hooks/use-captures';
 import { Send } from 'lucide-react';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import userAvatar from '@/assets/user-avatar.png';
+import seivahLogo from '@/assets/seivah-logo.png';
 interface Message {
   role: 'user' | 'assistant';
   content: string;
@@ -61,16 +64,41 @@ export default function Conversations() {
               </p>
             </div>}
           
-          {messages.map((message, idx) => <div key={idx} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+          {messages.map((message, idx) => (
+            <div key={idx} className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              {message.role === 'assistant' && (
+                <div className="flex flex-col items-center gap-1">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={seivahLogo} alt="Seivah" />
+                    <AvatarFallback>S</AvatarFallback>
+                  </Avatar>
+                  <span className="text-xs text-muted-foreground font-medium">Seivah</span>
+                </div>
+              )}
+              
               <div className={`max-w-[70%] ${message.role === 'user' ? 'order-2' : 'order-1'}`}>
                 <div className={`
-                  px-4 py-3 rounded-2xl text-sm leading-relaxed
-                  ${message.role === 'user' ? 'bg-coral-primary text-white rounded-br-md' : 'bg-card border border-border text-foreground rounded-bl-md'}
+                  px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-md
+                  ${message.role === 'user' 
+                    ? 'bg-coral-primary text-white rounded-br-md' 
+                    : 'bg-card border border-border text-foreground rounded-bl-md'
+                  }
                 `}>
                   {message.content}
                 </div>
               </div>
-            </div>)}
+              
+              {message.role === 'user' && (
+                <div className="flex flex-col items-center gap-1">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={userAvatar} alt="Usuário" />
+                    <AvatarFallback>U</AvatarFallback>
+                  </Avatar>
+                  <span className="text-xs text-muted-foreground font-medium">Você</span>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
         {/* Fixed Input Area */}
