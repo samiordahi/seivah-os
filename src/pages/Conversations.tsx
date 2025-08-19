@@ -38,20 +38,27 @@ export default function Conversations() {
   const handleSend = async (text?: string) => {
     const content = (text ?? input).trim();
     if (!content) return;
+    
     setMessages(prev => [...prev, {
       role: 'user',
       content
     }]);
     setInput('');
+    
     const {
       success,
-      aiText
+      aiText,
+      category
     } = await processCapture(content);
+    
+    console.log('Message category:', category);
+    
     const assistantText = aiText || 'Ok, registrei sua captura.';
     setMessages(prev => [...prev, {
       role: 'assistant',
       content: assistantText
     }]);
+    
     return success;
   };
   return <DashboardLayout>

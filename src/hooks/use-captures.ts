@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useCategorization, MessageCategory } from '@/hooks/use-categorization';
 
 export interface CaptureData {
   transactions?: {
@@ -29,8 +30,9 @@ export function useCaptures() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [aiResponse, setAiResponse] = useState<string>('');
   const { toast } = useToast();
+  const { categorizeMessage } = useCategorization();
 
-  const processCapture = async (input: string): Promise<{ success: boolean; aiText?: string }> => {
+  const processCapture = async (input: string): Promise<{ success: boolean; aiText?: string; category?: MessageCategory }> => {
     setIsProcessing(true);
     setAiResponse('');
     
@@ -46,21 +48,26 @@ export function useCaptures() {
         return { success: false };
       }
 
-      // First, get AI response
-      console.log('Calling AI chat function with input:', input);
+      // First, categorize the message to understand the intent
+      const category = await categorizeMessage(input);
+      console.log('Message categorized as:', category);
+
+      // Get AI response (only for certain categories)
       let aiResponseText = '';
-      try {
-        const { data: aiData, error: aiError } = await supabase.functions.invoke('ai-chat', {
-          body: { 
-            message: input,
-            model: "meta-llama/llama-3.1-8b-instruct:free"
-          }
-        });
-        if (aiError) throw aiError;
-        aiResponseText = aiData?.response || '';
-        setAiResponse(aiResponseText);
-      } catch (err) {
-        console.error('AI chat error:', err);
+      if (category === 'conversation' || category === 'addition') {
+        try {
+          const { data: aiData, error: aiError } = await supabase.functions.invoke('ai-chat', {
+            body: { 
+              message: input,
+              model: "meta-llama/llama-3.1-8b-instruct:free"
+            }
+          });
+          if (aiError) throw aiError;
+          aiResponseText = aiData?.response || '';
+          setAiResponse(aiResponseText);
+        } catch (err) {
+          console.error('AI chat error:', err);
+        }
       }
 
       // Store raw capture first
@@ -121,7 +128,7 @@ export function useCaptures() {
         description: "Sua captura foi analisada e organizada com sucesso.",
       });
 
-      return { success: true, aiText: aiResponseText };
+      return { success: true, aiText: aiResponseText, category };
     } catch (error) {
       console.error('Error processing capture:', error);
       toast({
