@@ -8,7 +8,7 @@ import { useProfile } from "@/hooks/use-profile";
 import { useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import userAvatar from "@/assets/user-avatar.png";
-import seivahLogo from "@/assets/seivah-logo-gradient.png";
+import seivahLogo from "@/assets/seivah-official-logo.png";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
