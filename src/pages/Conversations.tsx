@@ -8,7 +8,6 @@ import { useProfile } from '@/hooks/use-profile';
 import { Send } from 'lucide-react';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import seivahLogo from '@/assets/seivah-logo.png';
 interface Message {
   role: 'user' | 'assistant';
   content: string;
@@ -69,7 +68,7 @@ export default function Conversations() {
             <div key={idx} className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {message.role === 'assistant' && (
                 <Avatar className="h-8 w-8 flex-shrink-0">
-                  <AvatarImage src={seivahLogo} alt="Seivah" />
+                  <AvatarImage src="/lovable-uploads/f0d3c801-cf7c-4a27-8e94-d8b7dfbb629b.png" alt="Seivah" />
                   <AvatarFallback>S</AvatarFallback>
                 </Avatar>
               )}
