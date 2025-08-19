@@ -65,7 +65,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background">
       <div className="flex">
         {/* Sidebar */}
-        <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6 transition-all duration-300`}>
+        <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6 transition-all duration-300 flex flex-col`}>
           {/* Logo and Collapse Button */}
           <div className="mb-8 flex items-center justify-between">
             {!isCollapsed && (
@@ -149,16 +149,18 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
 
           {/* Navigation */}
-          <SidebarNav items={navigationItems} isCollapsed={isCollapsed} />
+          <div className="flex-1">
+            <SidebarNav items={navigationItems} isCollapsed={isCollapsed} />
+          </div>
 
           {/* Clear Memories Button - Fixed at bottom */}
-          <div className="mt-auto pt-4">
+          <div className="border-t border-border/50 pt-4 mt-4">
             {!isCollapsed ? (
               <Button 
                 variant="ghost" 
                 size="sm" 
                 onClick={handleClearMemories}
-                className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10 gap-3"
+                className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10 gap-3 rounded-2xl"
               >
                 <Trash2 className="h-4 w-4" />
                 Limpar Memória
@@ -168,7 +170,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 variant="ghost" 
                 size="icon" 
                 onClick={handleClearMemories}
-                className="w-12 h-12 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                className="w-12 h-12 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-2xl mx-auto"
                 title="Limpar Memória"
               >
                 <Trash2 className="h-4 w-4" />
