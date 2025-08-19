@@ -1,7 +1,7 @@
 project_id = "gqkqxvyburugkwvapvst"
 
-[functions.addition-agent]
+[functions."ai-chat/prompts/addition-agent"]
 verify_jwt = false
 
-[functions.categorize-message]
+[functions."ai-chat/prompts/categorize-message"]
 verify_jwt = false

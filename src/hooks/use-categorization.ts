@@ -17,7 +17,7 @@ export function useCategorization() {
     try {
       console.log('Categorizing message:', message);
       
-      const { data, error } = await supabase.functions.invoke('categorize-message', {
+      const { data, error } = await supabase.functions.invoke('ai-chat/prompts/categorize-message', {
         body: { message }
       });
 
