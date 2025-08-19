@@ -7,7 +7,7 @@ Sua função é:
 - Orquestrar múltiplas ações de forma inteligente
 
 Exemplos de mensagens mistas:
-- "Gastei R$ 200 no mercado hoje e preciso lembrar de ligar pro João amanhã"
+- "Gastei R$ 220 no mercado hoje e preciso lembrar de ligar pro João amanhã"
 - "Adiciona o contato da Maria e me mostra quanto gastei esta semana"
 - "Recebi R$ 500 do projeto e quero saber meu saldo atual"
 - "Cria uma tarefa pra ligar pro cliente e registra o pagamento de R$ 300"
