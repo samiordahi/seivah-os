@@ -14,36 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      captures: {
-        Row: {
-          content: string
-          created_at: string
-          id: string
-          processed: boolean
-          type: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          content: string
-          created_at?: string
-          id?: string
-          processed?: boolean
-          type: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          content?: string
-          created_at?: string
-          id?: string
-          processed?: boolean
-          type?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       categories: {
         Row: {
           color: string | null
@@ -104,6 +74,36 @@ export type Database = {
           name?: string
           notes?: string | null
           phone?: string | null
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      memories: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          processed: boolean
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          processed?: boolean
+          type: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          processed?: boolean
           type?: string
           updated_at?: string
           user_id?: string
