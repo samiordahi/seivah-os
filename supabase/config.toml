@@ -1,8 +1,5 @@
 project_id = "gqkqxvyburugkwvapvst"
 
-[functions.ai-chat]
-verify_jwt = false
-
 [functions.addition-agent]
 verify_jwt = false
 

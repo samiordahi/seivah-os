@@ -52,23 +52,8 @@ export function useCaptures() {
       const category = await categorizeMessage(input);
       console.log('Message categorized as:', category);
 
-      // Get AI response (only for certain categories)
+      // Process with dedicated agents based on category
       let aiResponseText = '';
-      if (category === 'conversation' || category === 'addition') {
-        try {
-          const { data: aiData, error: aiError } = await supabase.functions.invoke('ai-chat', {
-            body: { 
-              message: input,
-              model: "meta-llama/llama-3.1-8b-instruct:free"
-            }
-          });
-          if (aiError) throw aiError;
-          aiResponseText = aiData?.response || '';
-          setAiResponse(aiResponseText);
-        } catch (err) {
-          console.error('AI chat error:', err);
-        }
-      }
 
       // Store raw memory first
       const { error: memoryError } = await supabase
