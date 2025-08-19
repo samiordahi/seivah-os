@@ -8,7 +8,6 @@ import { useProfile } from "@/hooks/use-profile";
 import { useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import userAvatar from "@/assets/user-avatar.png";
-import seivahLogo from "@/assets/seivah-official-logo.png";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -63,7 +62,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="mb-8 flex items-center justify-between">
             {!isCollapsed && (
               <div className="flex items-center gap-2">
-                <img src={seivahLogo} alt="Seivah" className="h-8 w-8" />
+                <img src="/lovable-uploads/f0d3c801-cf7c-4a27-8e94-d8b7dfbb629b.png" alt="Seivah" className="h-8 w-8" />
                 <h1 className="text-xl font-bold text-foreground">Seivah</h1>
               </div>
             )}
