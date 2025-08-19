@@ -1,6 +1,5 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-// removed TooltipProvider to avoid runtime error; local tooltips still work
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
@@ -12,9 +11,9 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
       <Toaster />
       <Sonner />
       <BrowserRouter>
@@ -27,9 +26,6 @@ const App = () => (
           } />
           <Route path="/conversations" element={
             <ProtectedRoute>
-              {/** Lazy import not necessary for now */}
-              {/** Keeping consistent UI */}
-              {/** Page shows chat thread */}
               <Conversations />
             </ProtectedRoute>
           } />
@@ -38,12 +34,11 @@ const App = () => (
               <Finances />
             </ProtectedRoute>
           } />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    
-  </QueryClientProvider>
-);
+    </QueryClientProvider>
+  );
+};
 
 export default App;
