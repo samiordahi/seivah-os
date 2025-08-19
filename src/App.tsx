@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import Conversations from "./pages/Conversations";
+import Finances from "./pages/Finances";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,11 @@ const App = () => (
               {/** Keeping consistent UI */}
               {/** Page shows chat thread */}
               <Conversations />
+            </ProtectedRoute>
+          } />
+          <Route path="/finances" element={
+            <ProtectedRoute>
+              <Finances />
             </ProtectedRoute>
           } />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
