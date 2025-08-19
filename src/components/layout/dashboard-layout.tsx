@@ -169,9 +169,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="flex justify-center">
                 <Button 
                   variant="ghost" 
-                  size="icon" 
                   onClick={handleClearMemories}
-                  className="w-12 h-12 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full"
+                  className="w-12 h-12 p-0 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full flex items-center justify-center"
                   title="Limpar Memória"
                 >
                   <Trash2 className="h-4 w-4" />
