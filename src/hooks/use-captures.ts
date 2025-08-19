@@ -48,13 +48,6 @@ export function useCaptures() {
         return { success: false };
       }
 
-      // First, categorize the message to understand the intent
-      const category = await categorizeMessage(input);
-      console.log('Message categorized as:', category);
-
-      // Process with dedicated agents based on category
-      let aiResponseText = '';
-
       // Store raw memory first
       const { error: memoryError } = await supabase
         .from('memories')
@@ -70,55 +63,22 @@ export function useCaptures() {
         throw memoryError;
       }
 
-      // Parse the input to identify types and extract data
-      const parsedData = parseInput(input);
-      
-      // Process transactions
-      if (parsedData.transactions?.length) {
-        for (const transaction of parsedData.transactions) {
-          const { error } = await supabase
-            .from('transactions')
-            .insert({
-              user_id: user.id,
-              ...transaction
-            });
-          
-          if (error) {
-            console.error('Transaction insert error:', error);
-            // Don't throw, continue with other operations
-          }
-        }
-      }
+      // Process message exclusively via categorize-message
+      const category = await categorizeMessage(input);
+      console.log('Message categorized as:', category);
 
-      // Process connections
-      if (parsedData.connections?.length) {
-        for (const connection of parsedData.connections) {
-          const { error } = await supabase
-            .from('connections')
-            .insert({
-              user_id: user.id,
-              ...connection
-            });
-          
-          if (error) {
-            console.error('Connection insert error:', error);
-            // Don't throw, continue with other operations
-          }
-        }
-      }
-
-      // Show success message with AI response
+      // Show success message
       toast({
-        title: "Captura processada!",
-        description: "Sua captura foi analisada e organizada com sucesso.",
+        title: "Mensagem processada!",
+        description: "Sua mensagem foi analisada pelo sistema inteligente.",
       });
 
-      return { success: true, aiText: aiResponseText, category };
+      return { success: true, aiText: '', category };
     } catch (error) {
       console.error('Error processing capture:', error);
       toast({
         title: "Erro ao processar",
-        description: "Não foi possível processar sua captura. Tente novamente.",
+        description: "Não foi possível processar sua mensagem. Tente novamente.",
         variant: "destructive",
       });
       return { success: false };
@@ -183,58 +143,4 @@ export function useCaptures() {
     clearAiResponse,
     clearAllMemories
   };
-}
-
-// Enhanced parsing logic - can be improved with AI later
-function parseInput(input: string): CaptureData {
-  const result: CaptureData = {};
-  const text = input.toLowerCase();
-
-  // Check for financial transactions
-  const moneyPattern = /(?:r\$|reais?|\$)\s*(\d+(?:[.,]\d{2})?)/gi;
-  const incomeKeywords = ['recebi', 'ganhou', 'salário', 'vendeu', 'entrada', 'receita'];
-  const expenseKeywords = ['gastou', 'comprou', 'pagou', 'saída', 'despesa', 'conta'];
-
-  const moneyMatches = Array.from(input.matchAll(moneyPattern));
-  
-  if (moneyMatches.length > 0) {
-    result.transactions = [];
-    
-    for (const match of moneyMatches) {
-      const amount = parseFloat(match[1].replace(',', '.'));
-      const isIncome = incomeKeywords.some(keyword => text.includes(keyword));
-      const isExpense = expenseKeywords.some(keyword => text.includes(keyword));
-      
-      result.transactions.push({
-        amount,
-        description: input.substring(0, 100), // Truncate description
-        type: isIncome ? 'income' : 'expense',
-        category: isExpense ? 'geral' : undefined
-      });
-    }
-  }
-
-  // Check for contact information
-  const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-  const phonePattern = /\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4}/g;
-  
-  const emails = input.match(emailPattern);
-  const phones = input.match(phonePattern);
-  
-  if (emails || phones) {
-    result.connections = [];
-    
-    // Extract name (first few words before contact info)
-    const words = input.split(' ');
-    const name = words.slice(0, 3).join(' ') || 'Contato';
-    
-    result.connections.push({
-      name,
-      type: 'personal',
-      email: emails?.[0],
-      phone: phones?.[0]
-    });
-  }
-
-  return result;
 }
