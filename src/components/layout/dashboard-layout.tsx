@@ -171,7 +171,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   variant="ghost" 
                   size="icon" 
                   onClick={handleClearMemories}
-                  className="w-12 h-12 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-2xl"
+                  className="w-12 h-12 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full"
                   title="Limpar Memória"
                 >
                   <Trash2 className="h-4 w-4" />
