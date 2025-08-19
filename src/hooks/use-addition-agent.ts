@@ -24,7 +24,7 @@ export function useAdditionAgent() {
     try {
       console.log('Addition Agent - Processing message:', message);
       
-      const { data, error } = await supabase.functions.invoke('ai-chat/prompts/addition-agent', {
+      const { data, error } = await supabase.functions.invoke('ai-chat/agents/addition-agent', {
         body: { message }
       });
 
