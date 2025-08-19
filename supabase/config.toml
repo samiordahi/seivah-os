@@ -8,3 +8,12 @@ verify_jwt = false
 
 [functions."ai-chat/agents/conversation-agent"]
 verify_jwt = false
+
+[functions."ai-chat/agents/query-agent"]
+verify_jwt = false
+
+[functions."ai-chat/agents/modification-agent"]
+verify_jwt = false
+
+[functions."ai-chat/agents/mixed-agent"]
+verify_jwt = false

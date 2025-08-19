@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useCategorization, MessageCategory } from '@/hooks/use-categorization';
+import { useAdditionAgent } from '@/hooks/use-addition-agent';
+import { useConversationAgent } from '@/hooks/use-conversation-agent';
+import { useQueryAgent } from '@/hooks/use-query-agent';
+import { useModificationAgent } from '@/hooks/use-modification-agent';
+import { useMixedAgent } from '@/hooks/use-mixed-agent';
 
 export interface CaptureData {
   transactions?: {
@@ -31,6 +36,11 @@ export function useCaptures() {
   const [aiResponse, setAiResponse] = useState<string>('');
   const { toast } = useToast();
   const { categorizeMessage } = useCategorization();
+  const { processAddition } = useAdditionAgent();
+  const { processConversation } = useConversationAgent();
+  const { processQuery } = useQueryAgent();
+  const { processModification } = useModificationAgent();
+  const { processMixed } = useMixedAgent();
 
   const processCapture = async (input: string): Promise<{ success: boolean; aiText?: string; category?: MessageCategory }> => {
     setIsProcessing(true);
@@ -63,9 +73,36 @@ export function useCaptures() {
         throw memoryError;
       }
 
-      // Process message exclusively via categorize-message
+      // Step 1: Categorize message
       const category = await categorizeMessage(input);
       console.log('Message categorized as:', category);
+
+      // Step 2: Process with appropriate sub-agent
+      let agentResult;
+      switch (category) {
+        case 'addition':
+          agentResult = await processAddition(input);
+          break;
+        case 'conversation':
+          agentResult = await processConversation(input);
+          break;
+        case 'query':
+          agentResult = await processQuery(input);
+          break;
+        case 'modification':
+          agentResult = await processModification(input);
+          break;
+        case 'mixed':
+          agentResult = await processMixed(input);
+          break;
+        default:
+          // Fallback to conversation
+          agentResult = await processConversation(input);
+          break;
+      }
+
+      console.log('Agent result:', agentResult);
+      setAiResponse(agentResult.resposta);
 
       // Show success message
       toast({
@@ -73,7 +110,7 @@ export function useCaptures() {
         description: "Sua mensagem foi analisada pelo sistema inteligente.",
       });
 
-      return { success: true, aiText: '', category };
+      return { success: true, aiText: agentResult.resposta, category };
     } catch (error) {
       console.error('Error processing capture:', error);
       toast({
