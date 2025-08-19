@@ -70,9 +70,9 @@ export function useCaptures() {
         }
       }
 
-      // Store raw memory first
-      const { error: memoryError } = await supabase
-        .from('memories')
+      // Store raw capture first
+      const { error: captureError } = await supabase
+        .from('captures')
         .insert({
           user_id: user.id,
           content: input,
@@ -80,9 +80,9 @@ export function useCaptures() {
           processed: false
         });
 
-      if (memoryError) {
-        console.error('Memory error:', memoryError);
-        throw memoryError;
+      if (captureError) {
+        console.error('Capture error:', captureError);
+        throw captureError;
       }
 
       // Parse the input to identify types and extract data
@@ -146,57 +146,11 @@ export function useCaptures() {
     setAiResponse('');
   };
 
-  const clearAllMemories = async (): Promise<boolean> => {
-    try {
-      // Get current user
-      const { data: { user }, error: userError } = await supabase.auth.getUser();
-      if (userError || !user) {
-        toast({
-          title: "Erro de autenticação",
-          description: "Você precisa estar logado para limpar memórias.",
-          variant: "destructive",
-        });
-        return false;
-      }
-
-      // Delete all memories for the current user
-      const { error } = await supabase
-        .from('memories')
-        .delete()
-        .eq('user_id', user.id);
-
-      if (error) {
-        console.error('Error clearing memories:', error);
-        toast({
-          title: "Erro ao limpar memórias",
-          description: "Não foi possível limpar as memórias. Tente novamente.",
-          variant: "destructive",
-        });
-        return false;
-      }
-
-      toast({
-        title: "Memórias limpas!",
-        description: "Todas as suas memórias foram removidas com sucesso.",
-      });
-      return true;
-    } catch (error) {
-      console.error('Error clearing memories:', error);
-      toast({
-        title: "Erro ao limpar memórias",
-        description: "Não foi possível limpar as memórias. Tente novamente.",
-        variant: "destructive",
-      });
-      return false;
-    }
-  };
-
   return {
     processCapture,
     isProcessing,
     aiResponse,
-    clearAiResponse,
-    clearAllMemories
+    clearAiResponse
   };
 }
 

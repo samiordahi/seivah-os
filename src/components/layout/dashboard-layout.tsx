@@ -1,11 +1,10 @@
-import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut, MessageSquare, PanelLeftClose, PanelLeftOpen, Edit3, Camera, Trash2 } from "lucide-react";
+import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut, MessageSquare, PanelLeftClose, PanelLeftOpen, Edit3, Camera } from "lucide-react";
 import { SidebarNav } from "@/components/ui/sidebar-nav";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import { useProfile } from "@/hooks/use-profile";
-import { useCaptures } from "@/hooks/use-captures";
 import { useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import userAvatar from "@/assets/user-avatar.png";
@@ -17,7 +16,6 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, signOut } = useAuth();
   const { profile, updateProfile, uploadAvatar } = useProfile();
-  const { clearAllMemories } = useCaptures();
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false);
@@ -52,12 +50,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     }
   };
 
-  const handleClearMemories = async () => {
-    if (confirm('Tem certeza que deseja limpar todas as memórias? Esta ação não pode ser desfeita.')) {
-      await clearAllMemories();
-    }
-  };
-
   const displayName = profile?.display_name || user?.email?.split('@')[0] || 'Usuário';
   const avatarUrl = profile?.avatar_url || userAvatar;
 
@@ -65,7 +57,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background">
       <div className="flex">
         {/* Sidebar */}
-        <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6 transition-all duration-300 flex flex-col`}>
+        <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6 transition-all duration-300`}>
           {/* Logo and Collapse Button */}
           <div className="mb-8 flex items-center justify-between">
             {!isCollapsed && (
@@ -149,34 +141,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
 
           {/* Navigation */}
-          <div className="flex-1">
-            <SidebarNav items={navigationItems} isCollapsed={isCollapsed} />
-          </div>
-
-          {/* Clear Memories Button - Fixed at bottom */}
-          <div className="border-t border-border/50 pt-4 mt-4">
-            {!isCollapsed ? (
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={handleClearMemories}
-                className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10 gap-3 rounded-2xl"
-              >
-                <Trash2 className="h-4 w-4" />
-                Limpar Memória
-              </Button>
-            ) : (
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                onClick={handleClearMemories}
-                className="w-12 h-12 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-2xl mx-auto"
-                title="Limpar Memória"
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            )}
-          </div>
+          <SidebarNav items={navigationItems} isCollapsed={isCollapsed} />
         </div>
 
         {/* Main Content */}
