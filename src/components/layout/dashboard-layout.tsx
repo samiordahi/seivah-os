@@ -8,6 +8,7 @@ import { useProfile } from "@/hooks/use-profile";
 import { useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import userAvatar from "@/assets/user-avatar.png";
+import seivahNewLogo from "@/assets/seivah-new-logo.png";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -60,7 +61,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6 transition-all duration-300`}>
           {/* Logo and Collapse Button */}
           <div className="mb-8 flex items-center justify-between">
-            {!isCollapsed && <h1 className="text-xl font-bold text-foreground">Seivah</h1>}
+            {!isCollapsed && (
+              <div className="flex items-center gap-2">
+                <img src={seivahNewLogo} alt="Seivah" className="h-8 w-8" />
+                <h1 className="text-xl font-bold text-foreground">Seivah</h1>
+              </div>
+            )}
             <Button
               size="icon"
               variant="ghost"
