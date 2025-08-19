@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useLocation } from 'react-router-dom';
 import { useCaptures } from '@/hooks/use-captures';
 import { useProfile } from '@/hooks/use-profile';
-import { Send } from 'lucide-react';
+import { Send, Trash2 } from 'lucide-react';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 interface Message {
@@ -20,7 +20,8 @@ export default function Conversations() {
   const { profile } = useProfile();
   const {
     processCapture,
-    isProcessing
+    isProcessing,
+    clearAllMemories
   } = useCaptures();
   const hasProcessedInitial = useRef(false);
 
@@ -60,6 +61,15 @@ export default function Conversations() {
     }]);
     
     return success;
+  };
+
+  const handleClearMemories = async () => {
+    if (confirm('Tem certeza que deseja limpar todas as memórias? Esta ação não pode ser desfeita.')) {
+      const success = await clearAllMemories();
+      if (success) {
+        setMessages([]);
+      }
+    }
   };
   return <DashboardLayout>
       <div className="flex flex-col h-[calc(100vh-12rem)]">
@@ -103,7 +113,7 @@ export default function Conversations() {
         </div>
 
         {/* Fixed Input Area */}
-        <div className="border-t border-border backdrop-blur-sm p-4 bg-white/0 rounded-md">
+        <div className="border-t border-border backdrop-blur-sm p-4 bg-white/0 rounded-md space-y-3">
           <form onSubmit={e => {
           e.preventDefault();
           handleSend();
@@ -115,6 +125,19 @@ export default function Conversations() {
               </Button>
             </div>
           </form>
+          
+          {/* Clear Memories Button */}
+          <div className="flex justify-center">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleClearMemories}
+              className="text-muted-foreground hover:text-destructive hover:border-destructive/50 gap-2"
+            >
+              <Trash2 className="h-4 w-4" />
+              Limpar Memória
+            </Button>
+          </div>
         </div>
       </div>
     </DashboardLayout>;
