@@ -1,20 +1,19 @@
 import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useN8n } from "@/hooks/use-n8n";
 
 export function ChatInput() {
   const [input, setInput] = useState("");
-  const navigate = useNavigate();
+  const { sendMessageToN8n, isProcessing } = useN8n();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const text = input.trim();
     if (!text) return;
 
-    // Redirect to conversations page with the initial message
-    navigate("/conversations", { state: { initialMessage: text } });
     setInput("");
+    await sendMessageToN8n(text);
   };
 
   return (
@@ -36,7 +35,7 @@ export function ChatInput() {
         <Button 
           type="submit"
           size="icon" 
-          disabled={!input.trim()}
+          disabled={!input.trim() || isProcessing}
           className="absolute right-2 top-1/2 -translate-y-1/2 bg-coral-primary hover:bg-coral-primary/90 text-white rounded-xl disabled:opacity-50"
         >
           <Send className="h-4 w-4" />

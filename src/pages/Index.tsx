@@ -5,8 +5,11 @@ import { XPIndicator } from "@/components/dashboard/xp-indicator";
 import { CalendarWidget } from "@/components/dashboard/calendar-widget";
 import { UpcomingTasks } from "@/components/dashboard/upcoming-tasks";
 import { DashboardLayout } from "@/components/layout/dashboard-layout";
+import { useRealtimeSync } from "@/hooks/use-realtime-sync";
 
 const Index = () => {
+  // Enable realtime sync for all database changes
+  useRealtimeSync();
   return (
     <DashboardLayout>
       {/* Layout principal: 2 colunas */}

@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useEffect, useRef, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useLocation } from 'react-router-dom';
-import { useCaptures } from '@/hooks/use-captures';
+import { useN8n } from '@/hooks/use-n8n';
 import { useProfile } from '@/hooks/use-profile';
+import { useRealtimeSync } from '@/hooks/use-realtime-sync';
 import { Send } from 'lucide-react';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -18,11 +18,11 @@ export default function Conversations() {
   const location = useLocation();
   const initialMessage = (location.state as any)?.initialMessage as string | undefined;
   const { profile } = useProfile();
-  const {
-    processCapture,
-    isProcessing
-  } = useCaptures();
+  const { sendMessageToN8n, isProcessing } = useN8n();
   const hasProcessedInitial = useRef(false);
+  
+  // Enable realtime sync
+  useRealtimeSync();
 
   // Auto-process initial message when arriving from dashboard
   useEffect(() => {
@@ -45,21 +45,16 @@ export default function Conversations() {
     }]);
     setInput('');
     
-    const {
-      success,
-      aiText,
-      category
-    } = await processCapture(content);
+    const result = await sendMessageToN8n(content);
     
-    console.log('Message category:', category);
+    if (result.success && result.response) {
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: result.response
+      }]);
+    }
     
-    const assistantText = aiText || 'Ok, registrei sua captura.';
-    setMessages(prev => [...prev, {
-      role: 'assistant',
-      content: assistantText
-    }]);
-    
-    return success;
+    return result.success;
   };
   return <DashboardLayout>
       <div className="flex flex-col h-[calc(100vh-12rem)]">
