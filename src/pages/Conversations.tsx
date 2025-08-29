@@ -8,13 +8,16 @@ import { useRealtimeSync } from '@/hooks/use-realtime-sync';
 import { Send } from 'lucide-react';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { ThinkingAnimation } from '@/components/ui/thinking-animation';
 interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
+
 export default function Conversations() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+  const [isThinking, setIsThinking] = useState(false);
   const location = useLocation();
   const initialMessage = (location.state as any)?.initialMessage as string | undefined;
   const { profile } = useProfile();
@@ -26,31 +29,73 @@ export default function Conversations() {
 
   // Auto-process initial message when arriving from dashboard
   useEffect(() => {
-    const run = async () => {
+    const processInitialMessage = async () => {
       if (initialMessage && !hasProcessedInitial.current) {
         hasProcessedInitial.current = true;
-        await handleSend(initialMessage);
+        
+        // Add user message immediately
+        setMessages([{
+          role: 'user',
+          content: initialMessage
+        }]);
+        
+        // Show thinking animation
+        setIsThinking(true);
+        
+        // Send to n8n in background
+        const result = await sendMessageToN8n(initialMessage);
+        
+        if (result.success && result.response) {
+          // Replace thinking with actual response
+          setIsThinking(false);
+          setMessages(prev => [...prev, {
+            role: 'assistant',
+            content: result.response!
+          }]);
+        } else {
+          // Show friendly error message
+          setIsThinking(false);
+          setMessages(prev => [...prev, {
+            role: 'assistant',
+            content: 'Ops, não consegui processar agora. Tenta de novo?'
+          }]);
+        }
       }
     };
-    run();
+    
+    processInitialMessage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialMessage]);
   const handleSend = async (text?: string) => {
     const content = (text ?? input).trim();
     if (!content) return;
     
+    // Add user message immediately
     setMessages(prev => [...prev, {
       role: 'user',
       content
     }]);
     setInput('');
     
+    // Show thinking animation
+    setIsThinking(true);
+    
+    // Send to n8n
     const result = await sendMessageToN8n(content);
+    
+    // Hide thinking and add response
+    setIsThinking(false);
     
     if (result.success && result.response) {
       setMessages(prev => [...prev, {
         role: 'assistant',
         content: result.response
+      }]);
+    } else {
+      // Show friendly error message
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: 'Ops, não consegui processar agora. Tenta de novo?'
       }]);
     }
     
@@ -95,6 +140,8 @@ export default function Conversations() {
               )}
             </div>
           ))}
+          
+          {isThinking && <ThinkingAnimation />}
         </div>
 
         {/* Fixed Input Area */}

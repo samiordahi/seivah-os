@@ -2,18 +2,25 @@ import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useN8n } from "@/hooks/use-n8n";
+import { useNavigate } from "react-router-dom";
 
 export function ChatInput() {
   const [input, setInput] = useState("");
   const { sendMessageToN8n, isProcessing } = useN8n();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const text = input.trim();
     if (!text) return;
 
+    const userMessage = text;
     setInput("");
-    await sendMessageToN8n(text);
+    
+    // Redirect immediately to conversations with the user message
+    navigate('/conversations', { 
+      state: { initialMessage: userMessage }
+    });
   };
 
   return (

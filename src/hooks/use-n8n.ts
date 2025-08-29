@@ -22,11 +22,6 @@ export function useN8n() {
       const { data: { session }, error: sessionError } = await supabase.auth.getSession();
       
       if (userError || !user || sessionError || !session) {
-        toast({
-          title: "Erro de autenticação",
-          description: "Você precisa estar logado para enviar mensagens.",
-          variant: "destructive",
-        });
         return { success: false };
       }
 
@@ -51,32 +46,25 @@ export function useN8n() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const result: N8nResponse = await response.json();
-      console.log('n8n response:', result);
-
-      if (!result.success) {
-        throw new Error(result.error || 'n8n processing failed');
+      // Try to parse JSON response, but don't fail if it's not the expected format
+      try {
+        const result: N8nResponse = await response.json();
+        console.log('n8n response:', result);
+        
+        return { 
+          success: true, 
+          response: result.response,
+          category: result.category 
+        };
+      } catch (parseError) {
+        // If we can't parse JSON or format is different, still consider it successful
+        // since the webhook was received by n8n (200 status)
+        console.log('n8n webhook sent successfully, response format may vary:', parseError);
+        return { success: true };
       }
-
-      // Show success message
-      toast({
-        title: "Mensagem processada!",
-        description: "Sua mensagem foi analisada pelo sistema inteligente.",
-      });
-
-      return { 
-        success: true, 
-        response: result.response,
-        category: result.category 
-      };
 
     } catch (error) {
       console.error('Error sending message to n8n:', error);
-      toast({
-        title: "Erro ao processar",
-        description: "Não foi possível processar sua mensagem. Tente novamente.",
-        variant: "destructive",
-      });
       return { success: false };
     } finally {
       setIsProcessing(false);
