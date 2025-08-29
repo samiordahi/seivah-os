@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import { useProfile } from "@/hooks/use-profile";
-import { useCaptures } from "@/hooks/use-captures";
+
 import { useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import userAvatar from "@/assets/user-avatar.png";
@@ -17,7 +17,7 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, signOut } = useAuth();
   const { profile, updateProfile, uploadAvatar } = useProfile();
-  const { clearAllMemories } = useCaptures();
+  
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false);
@@ -54,7 +54,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const handleClearMemories = async () => {
     if (confirm('Tem certeza que deseja limpar todas as memórias? Esta ação não pode ser desfeita.')) {
-      await clearAllMemories();
+      // TODO: Implementar limpeza via n8n quando necessário
+      console.log('Clear memories - será implementado via n8n');
     }
   };
 

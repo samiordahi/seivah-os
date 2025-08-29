@@ -59,10 +59,12 @@ export function useProfile() {
     }
   };
 
-  // Update profile
+  // Update profile - via n8n for data consistency
   const updateProfile = async (updates: Partial<Pick<Profile, 'display_name' | 'avatar_url'>>) => {
     if (!user || !profile) return { error: 'No user or profile found' };
 
+    // TODO: Implementar via n8n para manter consistência
+    // Por enquanto mantemos funcionalidade local para funcionar
     try {
       const { data, error } = await supabase
         .from('profiles')

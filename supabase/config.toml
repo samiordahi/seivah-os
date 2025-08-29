@@ -1,19 +1,1 @@
 project_id = "gqkqxvyburugkwvapvst"
-
-[functions."ai-chat/agents/addition-agent"]
-verify_jwt = false
-
-[functions."ai-chat/agents/categorize-message"]
-verify_jwt = false
-
-[functions."ai-chat/agents/conversation-agent"]
-verify_jwt = false
-
-[functions."ai-chat/agents/query-agent"]
-verify_jwt = false
-
-[functions."ai-chat/agents/modification-agent"]
-verify_jwt = false
-
-[functions."ai-chat/agents/mixed-agent"]
-verify_jwt = false
