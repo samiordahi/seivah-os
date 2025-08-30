@@ -28,7 +28,7 @@ export function useN8n() {
       console.log('Sending message to n8n:', message);
 
       // Send to n8n webhook
-      const response = await fetch('https://ordahimaps-n8n-a49d4a-85-31-62-152.traefik.me/webhook-test/seivah-os', {
+      const response = await fetch('https://n8n.samiraordahi.com.br/webhook-test/seivah', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
