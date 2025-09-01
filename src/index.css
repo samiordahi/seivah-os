@@ -23,6 +23,11 @@
     --glass-border: rgba(255, 255, 255, 0.2);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     
+    /* Custom input colors */
+    --input-text: 0 0% 15%;
+    --button-send: 12 68% 52%;
+    --button-send-hover: 12 78% 82%;
+    
     /* Design system tokens */
     --background: 25 60% 92%;
     --foreground: 340 15% 25%;
