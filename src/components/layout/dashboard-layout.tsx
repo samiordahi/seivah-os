@@ -163,7 +163,7 @@ export function DashboardLayout({
                 <img 
                   src="/lovable-uploads/9a877381-6901-4c1e-9d31-cd9a57f7868b.png" 
                   alt="Acenando" 
-                  className="h-5 w-5 hover:animate-[wave_1.5s_ease-in-out_infinite] origin-[70%_70%] cursor-default" 
+                  className="h-5 w-5 animate-[wave_1.5s_ease-in-out_infinite] origin-[70%_70%]" 
                 />
                 Olá, <span className="text-[hsl(var(--button-send))]">{displayName}</span>
               </h2>
