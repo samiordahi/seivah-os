@@ -122,9 +122,9 @@
   /* Custom wave animation for greeting */
   @keyframes wave {
     0%, 100% { transform: rotate(0deg); }
-    10%, 30%, 50%, 70% { transform: rotate(-10deg); }
-    20%, 40%, 60%, 80% { transform: rotate(12deg); }
-    90% { transform: rotate(-4deg); }
+    25% { transform: rotate(-8deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(8deg); }
   }
 }
 

@@ -1,4 +1,4 @@
-import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut, MessageSquare, PanelLeftClose, PanelLeftOpen, Edit3, Camera, Trash2 } from "lucide-react";
+import { LayoutDashboard, BarChart3, FolderOpen, CheckSquare, Users, Search, LogOut, MessageSquare, PanelLeftClose, PanelLeftOpen, Edit3, Camera, Trash2, Hand } from "lucide-react";
 import { SidebarNav } from "@/components/ui/sidebar-nav";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -159,8 +159,9 @@ export function DashboardLayout({
           {/* Header with Greeting and Logout */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-xl font-medium text-white">
-                Olá <span className="inline-block hover:animate-[wave_0.6s_ease-in-out] origin-[70%_70%] cursor-default">👋</span>, <span className="text-[hsl(var(--button-send))]">{displayName}</span>
+              <h2 className="text-xl font-medium text-white flex items-center gap-2">
+                <Hand className="h-5 w-5 text-[#D2B48C] hover:animate-[wave_1.5s_ease-in-out_infinite] origin-[70%_70%] cursor-default" />
+                Olá, <span className="text-[hsl(var(--button-send))]">{displayName}</span>
               </h2>
             </div>
             <Button size="icon" variant="ghost" onClick={signOut} className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive">
