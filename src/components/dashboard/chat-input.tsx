@@ -51,7 +51,7 @@ export function ChatInput() {
           color: 'hsl(var(--button-send))'
         }}>capturar</span> agora?
         </p>
-        <p className="text-sm font-light opacity-80" style={{
+        <p className="text-lg font-light opacity-90" style={{
         color: 'hsl(var(--chat-title-text))'
       }}>
           Converse com seu mentor particular e libere sua mente para o que realmente importa
