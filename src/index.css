@@ -27,7 +27,7 @@
     --input-text: 0 0% 15%;
     --button-send: 11 74% 53%;
     --button-send-hover: 11 88% 55%;
-    --button-send-shadow: 0 4px 15px hsl(11 88% 55% / 0.4);
+    --button-send-shadow: 0 4px 20px hsl(11 88% 55% / 0.8);
     
     /* Design system tokens */
     --background: 25 60% 92%;
