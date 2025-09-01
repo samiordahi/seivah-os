@@ -44,7 +44,7 @@ export function ChatInput() {
         <div className="relative rounded-2xl backdrop-blur-lg border border-white/20 transition-all duration-300 hover:border-white/30 before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-white/5 before:to-transparent before:pointer-events-none bg-white/[0.49]" style={{
         boxShadow: '0 25px 50px -12px hsl(var(--input-block-shadow) / 0.25)'
       }}>
-          <input type="text" value={input} onChange={e => setInput(e.target.value)} placeholder="Escreva qualquer coisa..." className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none focus:ring-2 focus:ring-white/30 transition-all bg-transparent py-[25px] pr-16 relative z-10 px-[21px]" />
+          <input type="text" value={input} onChange={e => setInput(e.target.value)} placeholder="Escreva qualquer coisa..." className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none focus:ring-2 focus:ring-white/30 transition-all bg-transparent py-[30px] pr-16 relative z-10 px-[21px]" />
           <Button type="submit" size="icon" disabled={!input.trim() || isProcessing} className="absolute right-2 top-1/2 -translate-y-1/2 bg-[hsl(var(--button-send))] hover:bg-[hsl(var(--button-send-hover))] text-white rounded-xl backdrop-blur-sm border border-white/30 z-20 shadow-[var(--button-send-shadow)] disabled:cursor-not-allowed enabled:shadow-[0_0_10px_hsl(11_88%_55%_/_0.4)] px-[25px] py-0 mx-[10px]">
             <Send className="h-4 w-4" />
           </Button>
