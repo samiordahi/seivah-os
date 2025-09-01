@@ -5,6 +5,7 @@ import { useN8n } from "@/hooks/use-n8n";
 import { useNavigate } from "react-router-dom";
 export function ChatInput() {
   const [input, setInput] = useState("");
+  const [isExpanded, setIsExpanded] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const {
     sendMessageToN8n,
@@ -16,7 +17,11 @@ export function ChatInput() {
     const textarea = textareaRef.current;
     if (textarea) {
       textarea.style.height = 'auto';
-      textarea.style.height = `${Math.min(textarea.scrollHeight, 150)}px`;
+      const newHeight = Math.min(textarea.scrollHeight, 150);
+      textarea.style.height = `${newHeight}px`;
+      
+      // Check if textarea has expanded beyond initial height
+      setIsExpanded(newHeight > 90);
     }
   };
 
@@ -71,7 +76,11 @@ export function ChatInput() {
               type="submit" 
               size="icon" 
               disabled={!input.trim() || isProcessing} 
-              className="absolute bottom-[21px] right-[21px] bg-[hsl(var(--button-send))] hover:bg-[hsl(var(--button-send-hover))] text-white rounded-xl backdrop-blur-sm border border-white/30 z-20 shadow-[var(--button-send-shadow)] disabled:cursor-not-allowed enabled:shadow-[0_0_10px_hsl(11_88%_55%_/_0.4)] py-0 px-[10px]"
+              className={`absolute bg-[hsl(var(--button-send))] hover:bg-[hsl(var(--button-send-hover))] text-white rounded-xl backdrop-blur-sm border border-white/30 z-20 shadow-[var(--button-send-shadow)] disabled:cursor-not-allowed enabled:shadow-[0_0_10px_hsl(11_88%_55%_/_0.4)] py-0 px-[10px] transition-all duration-200 ${
+                isExpanded 
+                  ? 'bottom-[21px] right-[21px]' 
+                  : 'top-1/2 right-[21px] -translate-y-1/2'
+              }`}
             >
               <Send className="h-4 w-4" />
             </Button>
