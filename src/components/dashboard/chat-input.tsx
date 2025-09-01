@@ -54,7 +54,7 @@ export function ChatInput() {
         <p className="text-lg font-light opacity-90" style={{
         color: 'hsl(var(--chat-title-text))'
       }}>
-          Converse com seu mentor particular e libere sua mente para o que realmente importa
+          Converse com seu mentor particular que ele cuida do resto
         </p>
       </div>
       
