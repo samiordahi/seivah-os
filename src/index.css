@@ -30,6 +30,7 @@
     --button-send-hover: 11 88% 55%;
     --button-send-shadow: 0 4px 20px hsl(11 88% 55% / 0.8);
     --input-block-shadow: 208 25% 72%;
+    --chat-title-text: 0 0% 51%;
     
     /* Design system tokens */
     --background: 25 60% 92%;
