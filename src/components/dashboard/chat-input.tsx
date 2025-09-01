@@ -42,6 +42,13 @@ export function ChatInput() {
       }
     });
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e as any);
+    }
+  };
   return <div className="p-6 px-0 py-[14px]">
       <div className="text-center mb-4">
         <p className="text-4xl font-bold mb-2 text-white">
@@ -66,6 +73,7 @@ export function ChatInput() {
               rows={1}
               value={input} 
               onChange={(e) => setInput(e.target.value)} 
+              onKeyDown={handleKeyDown}
               placeholder="Escreva qualquer coisa..." 
               className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none bg-transparent py-[30px] pr-20 relative z-10 px-[21px] resize-none overflow-y-auto min-h-[75px] max-h-[150px] flex items-center"
               style={{ lineHeight: '1.5', display: 'flex', alignItems: 'center' }}
