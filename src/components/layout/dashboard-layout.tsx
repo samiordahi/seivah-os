@@ -160,7 +160,11 @@ export function DashboardLayout({
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-xl font-medium text-white flex items-center gap-2">
-                <Hand className="h-5 w-5 text-[#D2B48C] hover:animate-[wave_1.5s_ease-in-out_infinite] origin-[70%_70%] cursor-default" />
+                <img 
+                  src="/lovable-uploads/9a877381-6901-4c1e-9d31-cd9a57f7868b.png" 
+                  alt="Acenando" 
+                  className="h-5 w-5 hover:animate-[wave_1.5s_ease-in-out_infinite] origin-[70%_70%] cursor-default" 
+                />
                 Olá, <span className="text-[hsl(var(--button-send))]">{displayName}</span>
               </h2>
             </div>
