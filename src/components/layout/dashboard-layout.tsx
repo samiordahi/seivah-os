@@ -160,7 +160,7 @@ export function DashboardLayout({
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-xl font-medium text-white">
-                Olá, <span className="text-coral-primary">{displayName}</span>
+                Olá <span className="inline-block hover:animate-[wave_0.6s_ease-in-out] origin-[70%_70%] cursor-default">👋</span>, <span className="text-[hsl(var(--button-send))]">{displayName}</span>
               </h2>
             </div>
             <Button size="icon" variant="ghost" onClick={signOut} className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive">

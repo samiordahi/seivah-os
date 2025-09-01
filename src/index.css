@@ -118,6 +118,14 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Custom wave animation for greeting */
+  @keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30%, 50%, 70% { transform: rotate(-10deg); }
+    20%, 40%, 60%, 80% { transform: rotate(12deg); }
+    90% { transform: rotate(-4deg); }
+  }
 }
 
 @layer base {
