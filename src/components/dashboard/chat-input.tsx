@@ -29,7 +29,7 @@ export function ChatInput() {
         <p className="text-3xl font-bold mb-2" style={{ color: 'hsl(var(--chat-title-text))' }}>
           O que deseja <span className="font-bold" style={{ color: 'hsl(var(--button-send))' }}>capturar</span> agora?
         </p>
-        <p className="text-sm font-light opacity-60" style={{ color: 'hsl(var(--chat-title-text))' }}>
+        <p className="text-sm font-light opacity-80" style={{ color: 'hsl(var(--chat-title-text))' }}>
           Converse com seu mentor particular e libere sua mente para o que realmente importa
         </p>
       </div>
