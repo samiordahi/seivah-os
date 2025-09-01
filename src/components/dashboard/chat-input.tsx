@@ -64,14 +64,14 @@ export function ChatInput() {
               value={input} 
               onChange={(e) => setInput(e.target.value)} 
               placeholder="Escreva qualquer coisa..." 
-              className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none focus:ring-2 focus:ring-white/30 transition-all bg-transparent py-[25px] pr-16 relative z-10 px-[21px] resize-none overflow-y-auto min-h-[75px] max-h-[150px]"
+              className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none bg-transparent py-[30px] pr-20 relative z-10 px-[21px] resize-none overflow-y-auto min-h-[90px] max-h-[150px]"
               style={{ lineHeight: '1.5' }}
             />
             <Button 
               type="submit" 
               size="icon" 
               disabled={!input.trim() || isProcessing} 
-              className="absolute bottom-2 right-2 bg-[hsl(var(--button-send))] hover:bg-[hsl(var(--button-send-hover))] text-white rounded-xl backdrop-blur-sm border border-white/30 z-20 shadow-[var(--button-send-shadow)] disabled:cursor-not-allowed enabled:shadow-[0_0_10px_hsl(11_88%_55%_/_0.4)] py-0 mx-[10px] px-[10px]"
+              className="absolute bottom-[21px] right-[21px] bg-[hsl(var(--button-send))] hover:bg-[hsl(var(--button-send-hover))] text-white rounded-xl backdrop-blur-sm border border-white/30 z-20 shadow-[var(--button-send-shadow)] disabled:cursor-not-allowed enabled:shadow-[0_0_10px_hsl(11_88%_55%_/_0.4)] py-0 px-[10px]"
             >
               <Send className="h-4 w-4" />
             </Button>
