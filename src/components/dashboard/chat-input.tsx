@@ -21,7 +21,7 @@ export function ChatInput() {
       textarea.style.height = `${newHeight}px`;
       
       // Check if textarea has expanded beyond initial height
-      setIsExpanded(newHeight > 90);
+      setIsExpanded(newHeight > 75);
     }
   };
 
@@ -69,8 +69,8 @@ export function ChatInput() {
               value={input} 
               onChange={(e) => setInput(e.target.value)} 
               placeholder="Escreva qualquer coisa..." 
-              className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none bg-transparent py-[30px] pr-20 relative z-10 px-[21px] resize-none overflow-y-auto min-h-[90px] max-h-[150px]"
-              style={{ lineHeight: '1.5' }}
+              className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none bg-transparent py-[30px] pr-20 relative z-10 px-[21px] resize-none overflow-y-auto min-h-[75px] max-h-[150px] flex items-center"
+              style={{ lineHeight: '1.5', display: 'flex', alignItems: 'center' }}
             />
             <Button 
               type="submit" 
