@@ -25,6 +25,7 @@
     
     /* Custom input colors */
     --input-text: 0 0% 15%;
+    --input-placeholder: 0 0% 62%;
     --button-send: 11 74% 53%;
     --button-send-hover: 11 88% 55%;
     --button-send-shadow: 0 4px 20px hsl(11 88% 55% / 0.8);
