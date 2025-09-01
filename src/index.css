@@ -18,6 +18,11 @@
     --gradient-soft: linear-gradient(180deg, hsl(25 60% 92%), hsl(30 40% 96%));
     --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
     
+    /* Glassmorphism effects */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    
     /* Design system tokens */
     --background: 25 60% 92%;
     --foreground: 340 15% 25%;

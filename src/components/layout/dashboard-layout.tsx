@@ -63,7 +63,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const avatarUrl = profile?.avatar_url || userAvatar;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-coral-muted via-coral-soft to-background">
+    <div 
+      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
+      style={{
+        backgroundImage: "url('/lovable-uploads/ed31b78c-8ec1-4796-9f40-6ff83cbdddb6.png')"
+      }}
+    >
       <div className="flex">
         {/* Sidebar */}
         <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen bg-gradient-to-b from-coral-secondary/50 to-coral-muted/30 backdrop-blur-sm p-6 transition-all duration-300 flex flex-col`}>

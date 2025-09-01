@@ -32,21 +32,23 @@ export function ChatInput() {
       </div>
       
       <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto">
-        <input 
-          type="text" 
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Escreva qualquer coisa..." 
-          className="w-full border-0 rounded-2xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-coral-primary/20 transition-all bg-card/90 backdrop-blur-sm shadow-lg mx-0 px-[20px] py-[25px] pr-16" 
-        />
-        <Button 
-          type="submit"
-          size="icon" 
-          disabled={!input.trim() || isProcessing}
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-coral-primary hover:bg-coral-primary/90 text-white rounded-xl disabled:opacity-50"
-        >
-          <Send className="h-4 w-4" />
-        </Button>
+        <div className="relative rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl hover:shadow-coral-primary/20 transition-all duration-300 hover:border-white/30 before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-white/5 before:to-transparent before:pointer-events-none">
+          <input 
+            type="text" 
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Escreva qualquer coisa..." 
+            className="w-full border-0 rounded-2xl text-foreground placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all bg-transparent px-[20px] py-[25px] pr-16 relative z-10" 
+          />
+          <Button 
+            type="submit"
+            size="icon" 
+            disabled={!input.trim() || isProcessing}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-xl disabled:opacity-50 backdrop-blur-sm border border-white/30 z-20"
+          >
+            <Send className="h-4 w-4" />
+          </Button>
+        </div>
       </form>
     </div>
   );
