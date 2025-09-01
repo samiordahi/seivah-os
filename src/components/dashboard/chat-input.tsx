@@ -51,8 +51,8 @@ export function ChatInput() {
   };
   return <div className="p-6 px-0 py-[14px]">
       <div className="text-center mb-4">
-        <p className="text-4xl font-bold mb-2 text-white">
-          O que deseja <span className="font-bold" style={{
+        <p className="text-4xl font-bold mb-2" style={{ color: '#828793' }}>
+          O que deseja <span className="font-light italic" style={{
           color: 'hsl(var(--button-send))'
         }}>capturar</span> agora?
         </p>
