@@ -150,11 +150,15 @@ export default function Conversations() {
           e.preventDefault();
           handleSend();
         }} className="relative">
-            <div className="flex items-center gap-2 bg-card border border-border rounded-2xl p-2 shadow-lg shadow-white/20">
-              <Input value={input} onChange={e => setInput(e.target.value)} placeholder={isProcessing ? "Processando..." : "Digite sua mensagem..."} disabled={isProcessing} className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-3" />
-              <Button type="submit" size="icon" disabled={!input.trim() || isProcessing} className="bg-coral-primary hover:bg-coral-primary/90 text-white rounded-xl h-9 w-9 flex-shrink-0">
-                {isProcessing ? <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" /> : <Send className="h-4 w-4" />}
-              </Button>
+            <div className="relative rounded-2xl backdrop-blur-lg border border-white/40 transition-all duration-300 hover:border-white/50 before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-white/5 before:to-transparent before:pointer-events-none bg-white/[0.49]" style={{
+        boxShadow: '0 25px 50px -12px hsl(var(--input-block-shadow) / 0.25), 0 0 30px rgba(255, 255, 255, 0.1)'
+      }}>
+              <div className="relative">
+                <Input value={input} onChange={e => setInput(e.target.value)} placeholder={isProcessing ? "Processando..." : "Digite sua mensagem..."} disabled={isProcessing} className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none bg-transparent py-[30px] pr-20 relative z-10 px-[21px] min-h-[75px] focus-visible:ring-0 focus-visible:ring-offset-0" />
+                <Button type="submit" size="icon" disabled={!input.trim() || isProcessing} className="absolute bg-[hsl(var(--button-send))] hover:bg-[hsl(var(--button-send-hover))] text-white rounded-xl backdrop-blur-sm border border-white/30 z-20 shadow-[var(--button-send-shadow)] disabled:cursor-not-allowed enabled:shadow-[0_0_10px_hsl(11_88%_55%_/_0.4)] py-0 px-[10px] transition-all duration-200 top-1/2 right-[21px] -translate-y-1/2">
+                  {isProcessing ? <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" /> : <Send className="h-4 w-4" />}
+                </Button>
+              </div>
             </div>
           </form>
         </div>
