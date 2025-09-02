@@ -52,7 +52,8 @@ export function ChatInput() {
           <img src="/lovable-uploads/e61ea78e-1309-46a7-995c-89aa70715801.png" alt="Seivah Avatar" className="h-[120px] w-[120px]" />
         </div>
         <p style={{
-        color: '#404040'
+        color: '#404040',
+        wordSpacing: '0.3em'
       }} className="mb-8 font-gothic text-5xl font-medium">
           O que deseja<br />
           <span className="font-light italic" style={{
