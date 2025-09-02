@@ -106,7 +106,7 @@ export function DashboardLayout({
           <div className="mb-8">
             <div className={`flex flex-col items-center ${isCollapsed ? 'gap-2' : 'gap-3'}`}>
               <div className="relative">
-                <Avatar className={`${isCollapsed ? 'h-12 w-12' : 'h-16 w-16'} transition-[width,height] duration-300 ease-in-out`}>
+                <Avatar className={`${isCollapsed ? 'h-12 w-12' : 'h-17 w-17'} transition-[width,height] duration-300 ease-in-out`}>
                   <AvatarImage src={avatarUrl} alt="User" />
                   <AvatarFallback>{displayName[0]?.toUpperCase()}</AvatarFallback>
                 </Avatar>
