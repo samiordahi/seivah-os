@@ -86,7 +86,7 @@ export function DashboardLayout({
   const displayName = profile?.display_name || user?.email?.split('@')[0] || 'Usuário';
   const avatarUrl = profile?.avatar_url || userAvatar;
   return <div className="min-h-screen bg-cover bg-center bg-no-repeat relative" style={{
-    backgroundImage: "url('/lovable-uploads/b63f09c7-1c40-4462-a763-4db4b6d36ebd.png')"
+    backgroundImage: "url('/lovable-uploads/ed31b78c-8ec1-4796-9f40-6ff83cbdddb6.png')"
   }}>
       <div className="flex">
         {/* Sidebar */}
@@ -95,7 +95,7 @@ export function DashboardLayout({
           <div className="mb-8 flex items-center justify-between">
             {!isCollapsed && <div className="flex items-center gap-2">
                 <img src="/lovable-uploads/f0d3c801-cf7c-4a27-8e94-d8b7dfbb629b.png" alt="Seivah" className="h-8 w-8" />
-                <h1 className="text-xl font-bold text-foreground">Seivah</h1>
+                <h1 className="text-xl font-bold text-[#df8a7f]">Seivah</h1>
               </div>}
             <Button size="icon" variant="ghost" onClick={() => setIsCollapsed(!isCollapsed)} className="text-muted-foreground hover:text-foreground hover:bg-card/50">
               {isCollapsed ? <PanelLeftOpen className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
@@ -160,11 +160,7 @@ export function DashboardLayout({
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-xl font-medium text-white flex items-center gap-2">
-                <img 
-                  src="/lovable-uploads/9a877381-6901-4c1e-9d31-cd9a57f7868b.png" 
-                  alt="Acenando" 
-                  className="h-5 w-5 animate-[wave_1.5s_ease-in-out_infinite] origin-[70%_70%]" 
-                />
+                <img src="/lovable-uploads/9a877381-6901-4c1e-9d31-cd9a57f7868b.png" alt="Acenando" className="h-5 w-5 animate-[wave_1.5s_ease-in-out_infinite] origin-[70%_70%]" />
                 Olá, <span className="text-[hsl(var(--button-send))]">{displayName}</span>
               </h2>
             </div>
