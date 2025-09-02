@@ -49,12 +49,13 @@ export function ChatInput() {
   return <div className="p-6 px-0 py-[14px] -mt-28">
       <div className="text-center mb-4">
         <div className="flex justify-center -mb-0 py-0 ">
-          <img src="/lovable-uploads/e61ea78e-1309-46a7-995c-89aa70715801.png" alt="Seivah Avatar" className="h-[158px] w-[158px]" />
+          <img src="/lovable-uploads/e61ea78e-1309-46a7-995c-89aa70715801.png" alt="Seivah Avatar" className="h-[120px] w-[120px]" />
         </div>
         <p style={{
         color: '#828793'
-      }} className="mb-2 text-[#829b82] font-gothic font-semibold text-4xl">
-          O que deseja <span className="font-light italic" style={{
+      }} className="mb-2 text-[#829b82] font-gothic font-semibold text-5xl">
+          O que deseja<br />
+          <span className="font-light italic" style={{
           color: 'hsl(var(--button-send))'
         }}>capturar</span> agora?
         </p>
