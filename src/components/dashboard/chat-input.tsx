@@ -62,7 +62,7 @@ export function ChatInput() {
         
       </div>
       
-      <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto">
+      <form onSubmit={handleSubmit} className="relative max-w-xl mx-auto">
         <div className={`relative rounded-2xl backdrop-blur-lg border border-white/40 transition-all duration-300 hover:border-white/50 before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-white/5 before:to-transparent before:pointer-events-none ${input ? 'bg-white/[0.65]' : 'bg-white/[0.49]'}`} style={{
         boxShadow: '0 25px 50px -12px hsl(var(--input-block-shadow) / 0.25), 0 0 30px rgba(255, 255, 255, 0.1)'
       }}>
