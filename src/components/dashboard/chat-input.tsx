@@ -51,9 +51,9 @@ export function ChatInput() {
         <div className="flex justify-center -mb-0 py-0 ">
           <img src="/lovable-uploads/84cc5d7e-5238-40ee-bc2e-fe5c026f5b95.png" alt="Seivah Avatar" className="h-[158px] w-[158px]" />
         </div>
-        <p className="text-4xl font-bold mb-2" style={{
+        <p style={{
         color: '#828793'
-      }}>
+      }} className="mb-2 text-[#829b82] font-semibold text-4xl">
           O que deseja <span className="font-light italic" style={{
           color: 'hsl(var(--button-send))'
         }}>capturar</span> agora?
