@@ -156,15 +156,6 @@ export function DashboardLayout({
 
         {/* Main Content */}
         <div className="flex-1 p-8">
-          {/* Seivah Avatar */}
-          <div className="flex justify-center mb-6">
-            <img 
-              src="/lovable-uploads/c5303e99-8389-4ca5-9284-d11b83a0b523.png" 
-              alt="Seivah Avatar" 
-              className="h-32 w-32" 
-            />
-          </div>
-
           {/* Header with Greeting and Logout */}
           <div className="flex items-center justify-between mb-8">
             <div>
