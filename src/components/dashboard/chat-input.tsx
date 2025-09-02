@@ -53,9 +53,9 @@ export function ChatInput() {
       <div className="text-center mb-4">
         <div className="flex justify-center mb-6">
           <img 
-            src="/lovable-uploads/f0d3c801-cf7c-4a27-8e94-d8b7dfbb629b.png" 
+            src="/lovable-uploads/84cc5d7e-5238-40ee-bc2e-fe5c026f5b95.png" 
             alt="Seivah Avatar" 
-            className="h-20 w-20 rounded-full"
+            className="h-20 w-20"
           />
         </div>
         <p className="text-4xl font-bold mb-2" style={{ color: '#828793' }}>
