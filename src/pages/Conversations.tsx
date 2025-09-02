@@ -150,7 +150,7 @@ export default function Conversations() {
           e.preventDefault();
           handleSend();
         }} className="relative">
-            <div className="flex items-center gap-2 bg-card border border-border rounded-2xl p-2">
+            <div className="flex items-center gap-2 bg-card border border-border rounded-2xl p-2 shadow-lg shadow-primary/10">
               <Input value={input} onChange={e => setInput(e.target.value)} placeholder={isProcessing ? "Processando..." : "Digite sua mensagem..."} disabled={isProcessing} className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-3" />
               <Button type="submit" size="icon" disabled={!input.trim() || isProcessing} className="bg-coral-primary hover:bg-coral-primary/90 text-white rounded-xl h-9 w-9 flex-shrink-0">
                 {isProcessing ? <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" /> : <Send className="h-4 w-4" />}
