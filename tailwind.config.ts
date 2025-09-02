@@ -75,6 +75,9 @@ export default {
 				},
 				nav: {
 					secondary: 'hsl(var(--nav-secondary))'
+				},
+				user: {
+					message: 'hsl(var(--user-message))'
 				}
 			},
 			borderRadius: {

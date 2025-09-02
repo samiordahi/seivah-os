@@ -120,12 +120,12 @@ export default function Conversations() {
                  </Avatar>
               )}
               
-              <div className="max-w-[70%]">
+               <div className="max-w-[70%]">
                 <div className={`
-                  px-6 py-4 text-sm leading-relaxed shadow-lg
+                  px-6 py-4 text-sm leading-relaxed
                   ${message.role === 'user' 
-                    ? 'bg-coral-primary text-white rounded-[24px] rounded-br-[8px]' 
-                    : 'bg-card border border-border text-foreground rounded-[24px] rounded-bl-[8px]'
+                    ? 'bg-user-message text-white rounded-[24px] rounded-br-[8px] shadow-[0_0_20px_hsl(var(--user-message)/0.4)]' 
+                    : 'bg-card border border-border text-foreground rounded-[24px] rounded-bl-[8px] shadow-lg'
                   }
                 `}>
                   {message.content}
