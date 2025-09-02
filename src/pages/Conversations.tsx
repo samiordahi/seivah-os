@@ -114,10 +114,10 @@ export default function Conversations() {
           {messages.map((message, idx) => (
             <div key={idx} className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {message.role === 'assistant' && (
-               <Avatar className="h-8 w-8 flex-shrink-0 rounded-full">
-                 <AvatarImage src="/lovable-uploads/fae7e475-8296-41b0-9ed6-1f5cf3159fa0.png" alt="Seivah" className="rounded-full" />
-                 <AvatarFallback className="rounded-full">S</AvatarFallback>
-               </Avatar>
+                 <Avatar className="h-8 w-8 flex-shrink-0">
+                   <AvatarImage src="/lovable-uploads/fae7e475-8296-41b0-9ed6-1f5cf3159fa0.png" alt="Seivah" />
+                   <AvatarFallback>S</AvatarFallback>
+                 </Avatar>
               )}
               
               <div className="max-w-[70%]">
