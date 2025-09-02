@@ -145,7 +145,7 @@ export default function Conversations() {
         </div>
 
         {/* Fixed Input Area */}
-        <div className="border-t border-border backdrop-blur-sm p-4 bg-white/0 rounded-md">
+        <div className="border-t border-border backdrop-blur-sm p-4 pb-8 bg-white/0 rounded-md">
           <form onSubmit={e => {
           e.preventDefault();
           handleSend();
