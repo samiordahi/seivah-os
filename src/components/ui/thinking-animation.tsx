@@ -4,7 +4,7 @@ export function ThinkingAnimation() {
   return (
     <div className="flex gap-3 justify-start">
       <Avatar className="h-8 w-8 flex-shrink-0">
-        <AvatarImage src="/lovable-uploads/f0d3c801-cf7c-4a27-8e94-d8b7dfbb629b.png" alt="Seivah" />
+        <AvatarImage src="/lovable-uploads/e61ea78e-1309-46a7-995c-89aa70715801.png" alt="Seivah" />
         <AvatarFallback>S</AvatarFallback>
       </Avatar>
       

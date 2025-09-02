@@ -49,7 +49,7 @@ export function ChatInput() {
   return <div className="p-6 px-0 py-[14px] -mt-28">
       <div className="text-center mb-4">
         <div className="flex justify-center -mb-0 py-0 ">
-          <img src="/lovable-uploads/84cc5d7e-5238-40ee-bc2e-fe5c026f5b95.png" alt="Seivah Avatar" className="h-[158px] w-[158px]" />
+          <img src="/lovable-uploads/e61ea78e-1309-46a7-995c-89aa70715801.png" alt="Seivah Avatar" className="h-[158px] w-[158px]" />
         </div>
         <p style={{
         color: '#828793'

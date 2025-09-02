@@ -94,7 +94,7 @@ export function DashboardLayout({
           {/* Logo and Collapse Button */}
           <div className="mb-8 flex items-center justify-between">
             {!isCollapsed && <div className="flex items-center gap-2">
-                <img src="/lovable-uploads/f0d3c801-cf7c-4a27-8e94-d8b7dfbb629b.png" alt="Seivah" className="h-8 w-8" />
+                <img src="/lovable-uploads/e61ea78e-1309-46a7-995c-89aa70715801.png" alt="Seivah" className="h-8 w-8" />
                 <h1 className="text-xl font-bold text-[#df8a7f]">Seivah</h1>
               </div>}
             <Button size="icon" variant="ghost" onClick={() => setIsCollapsed(!isCollapsed)} className="text-muted-foreground hover:text-foreground hover:bg-card/50">
