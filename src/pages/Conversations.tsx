@@ -122,10 +122,10 @@ export default function Conversations() {
               
               <div className="max-w-[70%]">
                 <div className={`
-                  px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-md
+                  px-6 py-4 text-sm leading-relaxed shadow-lg
                   ${message.role === 'user' 
-                    ? 'bg-coral-primary text-white rounded-br-md' 
-                    : 'bg-card border border-border text-foreground rounded-bl-md'
+                    ? 'bg-coral-primary text-white rounded-[24px] rounded-br-[8px]' 
+                    : 'bg-card border border-border text-foreground rounded-[24px] rounded-bl-[8px]'
                   }
                 `}>
                   {message.content}
