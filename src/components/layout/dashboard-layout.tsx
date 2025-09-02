@@ -97,7 +97,7 @@ export function DashboardLayout({
                 <img src="/lovable-uploads/fae7e475-8296-41b0-9ed6-1f5cf3159fa0.png" alt="Seivah Logo" className="h-8 w-8" />
                 <h1 className="text-xl font-bold font-gothic text-[#df8a7f]">Seivah</h1>
               </div>}
-            <Button size="icon" variant="ghost" onClick={() => setIsCollapsed(!isCollapsed)} className="text-muted-foreground hover:text-foreground hover:bg-card/50">
+            <Button size="icon" variant="ghost" onClick={() => setIsCollapsed(!isCollapsed)} className="text-nav-secondary hover:text-foreground hover:bg-card/50">
               {isCollapsed ? <PanelLeftOpen className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
             </Button>
           </div>
@@ -143,11 +143,11 @@ export function DashboardLayout({
 
           {/* Clear Memories Button - Fixed at bottom */}
           <div className="border-t border-border/50 pt-4 mt-4">
-            {!isCollapsed ? <Button variant="ghost" size="sm" onClick={handleClearMemories} className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10 gap-3 rounded-2xl">
+            {!isCollapsed ? <Button variant="ghost" size="sm" onClick={handleClearMemories} className="w-full justify-start text-nav-secondary hover:text-destructive hover:bg-destructive/10 gap-3 rounded-2xl">
                 <Trash2 className="h-4 w-4" />
                 Limpar Memória
               </Button> : <div className="flex justify-center">
-                <Button variant="ghost" size="icon" onClick={handleClearMemories} className="w-12 h-12 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full" title="Limpar Memória">
+                <Button variant="ghost" size="icon" onClick={handleClearMemories} className="w-12 h-12 text-nav-secondary hover:text-destructive hover:bg-destructive/10 rounded-full" title="Limpar Memória">
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </div>}

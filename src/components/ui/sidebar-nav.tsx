@@ -25,8 +25,8 @@ export function SidebarNav({ items, isCollapsed = false }: SidebarNavProps) {
                 ? "bg-card text-foreground shadow-sm rounded-full w-12 h-12 justify-center p-0"
                 : "bg-card text-foreground shadow-sm rounded-2xl px-4 py-3 gap-3"
               : isCollapsed
-                ? "text-muted-foreground hover:text-foreground hover:bg-card/50 rounded-2xl w-12 h-12 justify-center p-0"
-                : "text-muted-foreground hover:text-foreground hover:bg-card/50 rounded-2xl px-4 py-3 gap-3"
+                ? "text-nav-secondary hover:text-foreground hover:bg-card/50 rounded-2xl w-12 h-12 justify-center p-0"
+                : "text-nav-secondary hover:text-foreground hover:bg-card/50 rounded-2xl px-4 py-3 gap-3"
           )}
           title={isCollapsed ? item.title : undefined}
         >
