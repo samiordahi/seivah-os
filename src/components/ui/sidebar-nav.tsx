@@ -22,8 +22,8 @@ export function SidebarNav({ items, isCollapsed = false }: SidebarNavProps) {
             "flex items-center text-sm font-medium transition-all duration-200",
             item.isActive
               ? isCollapsed 
-                ? "bg-card text-foreground shadow-sm rounded-full w-12 h-12 justify-center p-0"
-                : "bg-card text-foreground shadow-sm rounded-2xl px-4 py-3 gap-3"
+                ? "bg-nav-active text-white shadow-sm rounded-full w-12 h-12 justify-center p-0"
+                : "bg-nav-active text-white shadow-sm rounded-2xl px-4 py-3 gap-3"
               : isCollapsed
                 ? "text-nav-secondary hover:text-foreground hover:bg-card/50 rounded-2xl w-12 h-12 justify-center p-0"
                 : "text-nav-secondary hover:text-foreground hover:bg-card/50 rounded-2xl px-4 py-3 gap-3"

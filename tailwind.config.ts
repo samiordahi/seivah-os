@@ -74,7 +74,8 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				nav: {
-					secondary: 'hsl(var(--nav-secondary))'
+					secondary: 'hsl(var(--nav-secondary))',
+					active: 'hsl(var(--nav-active))'
 				},
 				user: {
 					message: 'hsl(var(--user-message))'
