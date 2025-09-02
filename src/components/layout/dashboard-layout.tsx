@@ -90,7 +90,7 @@ export function DashboardLayout({
   }}>
       <div className="flex">
         {/* Sidebar */}
-        <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen rounded-2xl backdrop-blur-lg border border-white/20 transition-all duration-300 hover:border-white/30 before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-white/5 before:to-transparent before:pointer-events-none bg-white/[0.49] p-6 flex flex-col relative`}>
+        <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen rounded-2xl backdrop-blur-lg border border-white/20 transition-all duration-300 ease-in-out hover:border-white/30 before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-white/5 before:to-transparent before:pointer-events-none bg-white/[0.49] p-6 flex flex-col relative`}>
           {/* Logo and Collapse Button */}
           <div className="mb-8 flex items-center justify-between">
             {!isCollapsed && <div className="flex items-center gap-2">
