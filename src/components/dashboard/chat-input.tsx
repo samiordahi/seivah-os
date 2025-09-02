@@ -51,6 +51,13 @@ export function ChatInput() {
   };
   return <div className="p-6 px-0 py-[14px]">
       <div className="text-center mb-4">
+        <div className="flex justify-center mb-6">
+          <img 
+            src="/lovable-uploads/f0d3c801-cf7c-4a27-8e94-d8b7dfbb629b.png" 
+            alt="Seivah Avatar" 
+            className="h-20 w-20 rounded-full"
+          />
+        </div>
         <p className="text-4xl font-bold mb-2" style={{ color: '#828793' }}>
           O que deseja <span className="font-light italic" style={{
           color: 'hsl(var(--button-send))'
