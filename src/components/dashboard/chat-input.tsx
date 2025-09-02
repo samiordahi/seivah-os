@@ -53,7 +53,7 @@ export function ChatInput() {
         </div>
         <p style={{
         color: '#404040'
-      }} className="mb-2 font-gothic font-semibold text-5xl">
+      }} className="mb-5 font-gothic text-5xl font-medium">
           O que deseja<br />
           <span className="font-light italic" style={{
           color: 'hsl(var(--button-send))'
