@@ -49,7 +49,7 @@ export function ChatInput() {
       handleSubmit(e as any);
     }
   };
-  return <div className="p-6 px-0 py-[14px]">
+  return <div className="p-6 px-0 py-[14px] -mt-16">
       <div className="text-center mb-4">
         <div className="flex justify-center mb-6">
           <img 
