@@ -53,7 +53,7 @@ export function ChatInput() {
         </div>
         <p style={{
         color: '#828793'
-      }} className="mb-2 text-[#829b82] font-semibold text-4xl">
+      }} className="mb-2 text-[#829b82] font-gothic font-semibold text-4xl">
           O que deseja <span className="font-light italic" style={{
           color: 'hsl(var(--button-send))'
         }}>capturar</span> agora?

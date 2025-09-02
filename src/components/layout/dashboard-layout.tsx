@@ -95,7 +95,7 @@ export function DashboardLayout({
           <div className="mb-8 flex items-center justify-between">
             {!isCollapsed && <div className="flex items-center gap-2">
                 <img src="/lovable-uploads/e61ea78e-1309-46a7-995c-89aa70715801.png" alt="Seivah" className="h-8 w-8" />
-                <h1 className="text-xl font-bold text-[#df8a7f]">Seivah</h1>
+                <h1 className="text-xl font-bold font-gothic text-[#df8a7f]">Seivah</h1>
               </div>}
             <Button size="icon" variant="ghost" onClick={() => setIsCollapsed(!isCollapsed)} className="text-muted-foreground hover:text-foreground hover:bg-card/50">
               {isCollapsed ? <PanelLeftOpen className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
@@ -159,7 +159,7 @@ export function DashboardLayout({
           {/* Header with Greeting and Logout */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-xl font-medium text-white flex items-center gap-2">
+              <h2 className="text-xl font-medium font-gothic text-white flex items-center gap-2">
                 <img src="/lovable-uploads/9a877381-6901-4c1e-9d31-cd9a57f7868b.png" alt="Acenando" className="h-5 w-5 animate-[wave_1.5s_ease-in-out_infinite] origin-[70%_70%]" />
                 Olá, <span className="text-[hsl(var(--button-send))]">{displayName}</span>
               </h2>
