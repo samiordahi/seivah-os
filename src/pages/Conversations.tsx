@@ -102,9 +102,9 @@ export default function Conversations() {
     return result.success;
   };
   return <DashboardLayout>
-      <div className="flex flex-col h-[calc(100vh-12rem)]">
+      <main className="grid grid-rows-[1fr_auto] h-full">
         {/* Chat Messages Area */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+        <section className="overflow-y-auto px-4 py-6 space-y-4">
           {messages.length === 0 && <div className="flex items-center justify-center h-full">
               <p className="text-muted-foreground text-center">
                 Comece digitando uma mensagem abaixo.
@@ -142,14 +142,14 @@ export default function Conversations() {
           ))}
           
           {isThinking && <ThinkingAnimation />}
-        </div>
+        </section>
 
-        {/* Fixed Input Area */}
-        <div className="border-t border-border backdrop-blur-sm p-4 bg-white/0 rounded-md">
+        {/* Fixed Input Footer */}
+        <footer className="border-t border-border backdrop-blur-sm p-4 bg-white/0">
           <form onSubmit={e => {
-          e.preventDefault();
-          handleSend();
-        }} className="relative">
+            e.preventDefault();
+            handleSend();
+          }} className="relative">
             <div className="flex items-center gap-2 bg-card border border-border rounded-2xl p-2">
               <Input value={input} onChange={e => setInput(e.target.value)} placeholder={isProcessing ? "Processando..." : "Digite sua mensagem..."} disabled={isProcessing} className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-3" />
               <Button type="submit" size="icon" disabled={!input.trim() || isProcessing} className="bg-coral-primary hover:bg-coral-primary/90 text-white rounded-xl h-9 w-9 flex-shrink-0">
@@ -157,7 +157,7 @@ export default function Conversations() {
               </Button>
             </div>
           </form>
-        </div>
-      </div>
+        </footer>
+      </main>
     </DashboardLayout>;
 }
