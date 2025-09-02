@@ -88,9 +88,9 @@ export function DashboardLayout({
   return <div className="min-h-screen bg-cover bg-center bg-no-repeat relative" style={{
     backgroundImage: "url('/lovable-uploads/008ead33-f81f-4caf-af38-1ca78f83db3c.png')"
   }}>
-      <div className="min-h-screen grid grid-cols-[280px_1fr] grid-rows-[auto_1fr_auto]">
+      <div className="flex">
         {/* Sidebar */}
-        <aside className={`col-[1] row-[1/-1] ${isCollapsed ? 'w-20' : 'w-64'} rounded-2xl backdrop-blur-lg border border-white/20 transition-all duration-300 hover:border-white/30 before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-white/5 before:to-transparent before:pointer-events-none bg-white/[0.49] p-6 flex flex-col relative`}>
+        <div className={`${isCollapsed ? 'w-20' : 'w-64'} min-h-screen rounded-2xl backdrop-blur-lg border border-white/20 transition-all duration-300 hover:border-white/30 before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-r before:from-white/5 before:to-transparent before:pointer-events-none bg-white/[0.49] p-6 flex flex-col relative`}>
           {/* Logo and Collapse Button */}
           <div className="mb-8 flex items-center justify-between">
             {!isCollapsed && <div className="flex items-center gap-2">
@@ -142,7 +142,7 @@ export function DashboardLayout({
           </div>
 
           {/* Clear Memories Button - Fixed at bottom */}
-          <div className="mt-auto border-t border-white/20 pt-4">
+          <div className="border-t border-border/50 pt-4 mt-4">
             {!isCollapsed ? <Button variant="ghost" size="sm" onClick={handleClearMemories} className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10 gap-3 rounded-2xl">
                 <Trash2 className="h-4 w-4" />
                 Limpar Memória
@@ -152,12 +152,12 @@ export function DashboardLayout({
                 </Button>
               </div>}
           </div>
-        </aside>
+        </div>
 
         {/* Main Content */}
-        <main className="col-[2] row-[1/-1] grid grid-rows-[auto_1fr_auto] p-8">
+        <div className="flex-1 p-8">
           {/* Header with Greeting and Logout */}
-          <header className="row-start-1 flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-xl font-medium font-gothic text-white flex items-center gap-2">
                 <img src="/lovable-uploads/9a877381-6901-4c1e-9d31-cd9a57f7868b.png" alt="Acenando" className="h-5 w-5 animate-[wave_1.5s_ease-in-out_infinite] origin-[70%_70%]" />
@@ -167,13 +167,11 @@ export function DashboardLayout({
             <Button size="icon" variant="ghost" onClick={signOut} className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive">
               <LogOut className="h-5 w-5" />
             </Button>
-          </header>
+          </div>
 
           {/* Content */}
-          <section className="row-start-2 overflow-y-auto">
-            {children}
-          </section>
-        </main>
+          {children}
+        </div>
       </div>
     </div>;
 }
