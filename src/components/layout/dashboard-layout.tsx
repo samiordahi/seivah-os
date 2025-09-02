@@ -104,7 +104,7 @@ export function DashboardLayout({
 
           {/* User Profile */}
           <div className="mb-8">
-            <div className={`flex items-center gap-3 p-4 rounded-2xl ${isCollapsed ? 'justify-center bg-transparent p-2' : 'bg-card/60 backdrop-blur-sm'}`}>
+            <div className={`flex flex-col items-center ${isCollapsed ? 'gap-2' : 'gap-3'}`}>
               <div className="relative">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src={avatarUrl} alt="User" />
@@ -117,7 +117,7 @@ export function DashboardLayout({
                     <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleAvatarChange} />
                   </>}
               </div>
-              {!isCollapsed && <div className="flex-1">
+              {!isCollapsed && <div className="text-center">
                   {isEditingName ? <div className="flex items-center gap-2">
                       <Input value={editName} onChange={e => setEditName(e.target.value)} onKeyDown={e => {
                   if (e.key === 'Enter') handleNameSave();
@@ -126,7 +126,7 @@ export function DashboardLayout({
                       <Button size="sm" onClick={handleNameSave}>
                         Salvar
                       </Button>
-                    </div> : <div className="flex items-center gap-2">
+                    </div> : <div className="flex items-center gap-2 justify-center">
                       <p className="font-medium text-foreground">{displayName}</p>
                       <Button size="icon" variant="ghost" className="h-6 w-6" onClick={handleNameEdit}>
                         <Edit3 className="h-3 w-3" />
