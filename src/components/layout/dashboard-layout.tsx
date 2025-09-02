@@ -86,7 +86,7 @@ export function DashboardLayout({
   const displayName = profile?.display_name || user?.email?.split('@')[0] || 'Usuário';
   const avatarUrl = profile?.avatar_url || userAvatar;
   return <div className="min-h-screen bg-cover bg-center bg-no-repeat relative" style={{
-    backgroundImage: "url('/lovable-uploads/ed31b78c-8ec1-4796-9f40-6ff83cbdddb6.png')"
+    backgroundImage: "url('/lovable-uploads/008ead33-f81f-4caf-af38-1ca78f83db3c.png')"
   }}>
       <div className="flex">
         {/* Sidebar */}
