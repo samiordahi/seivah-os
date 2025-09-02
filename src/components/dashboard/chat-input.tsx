@@ -55,7 +55,7 @@ export function ChatInput() {
           <img 
             src="/lovable-uploads/84cc5d7e-5238-40ee-bc2e-fe5c026f5b95.png" 
             alt="Seivah Avatar" 
-            className="h-28 w-28"
+            className="h-32 w-32"
           />
         </div>
         <p className="text-4xl font-bold mb-2" style={{ color: '#828793' }}>
