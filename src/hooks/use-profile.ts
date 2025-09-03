@@ -4,7 +4,6 @@ import { useAuth } from './use-auth';
 
 interface Profile {
   id: string;
-  user_id: string;
   display_name: string | null;
   avatar_url: string | null;
   created_at: string;
@@ -27,7 +26,7 @@ export function useProfile() {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('id', user.id)
         .single();
 
       if (error && error.code !== 'PGRST116') {
@@ -42,7 +41,7 @@ export function useProfile() {
         const defaultName = user.email?.split('@')[0] || 'Usuário';
         const { data: newProfile, error: createError } = await supabase
           .from('profiles')
-          .insert([{ user_id: user.id, display_name: defaultName }])
+          .insert([{ id: user.id, display_name: defaultName }])
           .select()
           .single();
 
@@ -69,7 +68,7 @@ export function useProfile() {
       const { data, error } = await supabase
         .from('profiles')
         .update(updates)
-        .eq('user_id', user.id)
+        .eq('id', user.id)
         .select()
         .single();
 
