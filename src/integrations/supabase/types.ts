@@ -80,36 +80,6 @@ export type Database = {
         }
         Relationships: []
       }
-      memories: {
-        Row: {
-          content: string
-          created_at: string
-          id: string
-          processed: boolean
-          type: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          content: string
-          created_at?: string
-          id?: string
-          processed?: boolean
-          type: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          content?: string
-          created_at?: string
-          id?: string
-          processed?: boolean
-          type?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -117,7 +87,6 @@ export type Database = {
           display_name: string | null
           id: string
           updated_at: string
-          user_id: string
         }
         Insert: {
           avatar_url?: string | null
@@ -125,7 +94,6 @@ export type Database = {
           display_name?: string | null
           id?: string
           updated_at?: string
-          user_id: string
         }
         Update: {
           avatar_url?: string | null
@@ -133,7 +101,6 @@ export type Database = {
           display_name?: string | null
           id?: string
           updated_at?: string
-          user_id?: string
         }
         Relationships: []
       }
