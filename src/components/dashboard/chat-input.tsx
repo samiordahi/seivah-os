@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useRef, useEffect } from "react";
 import { useN8n } from "@/hooks/use-n8n";
 import { useNavigate } from "react-router-dom";
+import { VoiceInput } from "@/components/ui/voice-input";
 export function ChatInput() {
   const [input, setInput] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
@@ -67,14 +68,21 @@ export function ChatInput() {
         boxShadow: '0 25px 50px -12px hsl(var(--input-block-shadow) / 0.25), 0 0 30px rgba(255, 255, 255, 0.1)'
       }}>
           <div className="relative">
-            <textarea ref={textareaRef} rows={1} value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Escreva qualquer coisa..." className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none bg-transparent py-[30px] pr-20 relative z-10 px-[21px] resize-none overflow-y-auto min-h-[75px] max-h-[150px] flex items-center" style={{
+            <textarea ref={textareaRef} rows={1} value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Escreva qualquer coisa..." className="w-full border-0 rounded-2xl text-[hsl(var(--input-text))] placeholder:text-[hsl(var(--input-placeholder))] focus:outline-none bg-transparent py-[30px] pr-[120px] relative z-10 px-[21px] resize-none overflow-y-auto min-h-[75px] max-h-[150px] flex items-center" style={{
             lineHeight: '1.5',
             display: 'flex',
             alignItems: 'center'
           }} />
-            <Button type="submit" size="icon" disabled={!input.trim() || isProcessing} className={`absolute bg-[hsl(var(--button-send))] hover:bg-[hsl(var(--button-send-hover))] text-white rounded-xl backdrop-blur-sm border border-white/30 z-20 shadow-[var(--button-send-shadow)] disabled:cursor-not-allowed enabled:shadow-[0_0_10px_hsl(11_88%_55%_/_0.4)] py-0 px-[10px] transition-all duration-200 ${isExpanded ? 'bottom-[21px] right-[21px]' : 'top-1/2 right-[21px] -translate-y-1/2'}`}>
-              <Send className="h-4 w-4" />
-            </Button>
+            
+            <div className={`absolute flex items-center gap-2 z-20 ${isExpanded ? 'bottom-[21px] right-[21px]' : 'top-1/2 right-[21px] -translate-y-1/2'}`}>
+              <VoiceInput 
+                onTranscriptionComplete={(text) => setInput(prev => prev + (prev ? ' ' : '') + text)}
+                disabled={isProcessing}
+              />
+              <Button type="submit" size="icon" disabled={!input.trim() || isProcessing} className="bg-[hsl(var(--button-send))] hover:bg-[hsl(var(--button-send-hover))] text-white rounded-xl backdrop-blur-sm border border-white/30 shadow-[var(--button-send-shadow)] disabled:cursor-not-allowed enabled:shadow-[0_0_10px_hsl(11_88%_55%_/_0.4)] py-0 px-[10px] transition-all duration-200">
+                <Send className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </form>
