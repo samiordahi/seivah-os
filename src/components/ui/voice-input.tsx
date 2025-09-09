@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Mic, MicOff, Loader2 } from 'lucide-react';
+import { Mic, Pause, Loader2, X } from 'lucide-react';
 import { useVoiceRecorder } from '@/hooks/use-voice-recorder';
 import { cn } from '@/lib/utils';
 
@@ -65,20 +65,20 @@ export function VoiceInput({ onTranscriptionComplete, disabled = false, size = '
       
       <Button
         type="button"
-        variant="ghost"
+        variant="outline"
         size={size === 'sm' ? 'sm' : 'icon'}
         onClick={handleToggleRecording}
         disabled={disabled || isTranscribing}
         className={cn(
-          "transition-all duration-200 hover:scale-105",
-          isActive && "bg-red-500/10 hover:bg-red-500/20 text-red-600",
+          "transition-all duration-200 hover:scale-105 border border-white/40 backdrop-blur-sm",
+          isActive && "bg-red-500/10 hover:bg-red-500/20 text-red-600 border-red-500/40",
           isRecording && "animate-pulse",
           size === 'sm' && "h-8 w-8",
           size === 'lg' && "h-12 w-12"
         )}
         title={
           isRecording 
-            ? "Clique para parar a gravação" 
+            ? "Clique para concluir a gravação" 
             : isTranscribing 
             ? "Transcrevendo..." 
             : "Clique para gravar"
@@ -90,7 +90,7 @@ export function VoiceInput({ onTranscriptionComplete, disabled = false, size = '
             size === 'sm' ? "h-3 w-3" : "h-4 w-4"
           )} />
         ) : isRecording ? (
-          <MicOff className={cn(
+          <Pause className={cn(
             size === 'sm' ? "h-3 w-3" : "h-4 w-4"
           )} />
         ) : (
@@ -104,12 +104,12 @@ export function VoiceInput({ onTranscriptionComplete, disabled = false, size = '
         <Button
           type="button"
           variant="ghost"
-          size="sm"
+          size="icon"
           onClick={cancelRecording}
-          className="text-muted-foreground hover:text-red-600"
+          className="text-muted-foreground hover:text-red-600 h-8 w-8"
           title="Cancelar gravação"
         >
-          Cancelar
+          <X className="h-3 w-3" />
         </Button>
       )}
     </div>
